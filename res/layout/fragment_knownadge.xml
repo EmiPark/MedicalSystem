@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/rlyout_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp" >
+
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/btn_search" />
+
+        <EditText
+            android:id="@+id/etv_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/btn_search"
+            android:background="@drawable/bg_search_whilte"
+            android:gravity="left|center_vertical"
+            android:hint="疾病收索"
+            android:paddingLeft="20dp" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rlyout_search"
+        android:layout_marginTop="10dp" >
+    </ListView>
+
+</RelativeLayout>

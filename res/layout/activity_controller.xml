@@ -1,0 +1,124 @@
+<com.lf.view.DragLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whilte" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/rlyout_main_left" />
+    </RelativeLayout>
+
+    <com.lf.view.MyRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#eeeeee" >
+
+        <RelativeLayout
+            android:id="@+id/rlyout_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/title" >
+
+            <Button
+                android:id="@+id/btn_user"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/btn_left_slide2x"
+                android:onClick="onClick"
+                android:textColor="@color/whilte" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="医药健康"
+                android:textColor="@color/whilte"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/add"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/icon12x"
+                android:onClick="onClick"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RadioGroup
+            android:id="@+id/rg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_weight="3"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/rbtn_health"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/zhuce"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:padding="10dp"
+                android:text="健康"
+                android:textColor="@color/whilte"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/rbtn_knownadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/zhuce"
+                android:button="@null"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:padding="10dp"
+                android:text="知识"
+                android:textColor="@color/whilte"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/rbtn_tj"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/zhuce"
+                android:button="@null"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:padding="10dp"
+                android:text="资讯"
+                android:textColor="@color/whilte"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+        </RadioGroup>
+
+        <RelativeLayout
+            android:id="@+id/rlyout_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/rg"
+            android:layout_below="@id/rlyout_title" >
+        </RelativeLayout>
+    </com.lf.view.MyRelativeLayout>
+
+</com.lf.view.DragLayout>
