@@ -25,6 +25,31 @@ public class UserEntity extends BaseConnectEntity {
 	 * 真实姓名
 	 */
 	private String nameS;
+	/**
+	 * 年龄
+	 */
+	private String age;
+	/**
+	 * 身高
+	 */
+	private String high;
+	/**
+	 * 血型
+	 */
+	private String xx;
+	/**
+	 * 电话
+	 */
+	private String tel;
+	/**
+	 * 邮箱地址
+	 */
+	private String ads;
+	/**
+	 * 性别1boy 2girl
+	 */
+	private String sex;
+
 	public String getNameS() {
 		return nameS;
 	}
@@ -80,31 +105,6 @@ public class UserEntity extends BaseConnectEntity {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-
-	/**
-	 * 年龄
-	 */
-	private String age;
-	/**
-	 * 身高
-	 */
-	private String high;
-	/**
-	 * 血型
-	 */
-	private String xx;
-	/**
-	 * 电话
-	 */
-	private String tel;
-	/**
-	 * 邮箱地址
-	 */
-	private String ads;
-	/**
-	 * 性别
-	 */
-	private String sex;
 
 	public String getName() {
 		return name;

@@ -13,7 +13,7 @@ public class Global {
 	// 请求标识
 	public static enum Connect {
 		// 登录；注册；提交评论;得到全部消息;得到资讯数据;收索；得到所有的知识数据;提交体温等动态数据;修改个人信息;得到信息记录数据
-		LOGIN, REGISTER, COMMENT, GET_ALL_MSG, GET_ALL_IMSG, SEARCH, GET_ALL_KNOW, COMMIT_CHANGE_DATA, UPDATE_PERSON,GET_CHANGE_DATA
+		LOGIN, REGISTER, COMMENT, GET_ALL_MSG, GET_ALL_IMSG, SEARCH, GET_ALL_KNOW, COMMIT_CHANGE_DATA, UPDATE_PERSON, GET_CHANGE_DATA
 	};
 
 	/**

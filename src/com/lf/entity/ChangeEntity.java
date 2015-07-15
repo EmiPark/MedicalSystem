@@ -38,7 +38,7 @@ public class ChangeEntity extends BaseConnectEntity {
 	@Override
 	public LinkedHashMap<String, Object> getMap() {
 		LinkedHashMap<String, Object> map = new LinkedHashMap<String, Object>();
-		map.put("name", time);
+		map.put("time", time);
 		map.put("number", number);
 		map.put("type", type);
 		map.put("remark", remark);

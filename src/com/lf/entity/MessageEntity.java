@@ -3,6 +3,8 @@ package com.lf.entity;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import com.lf.common.MyApplication;
+
 import android.widget.LinearLayout;
 
 /**
@@ -15,26 +17,27 @@ public class MessageEntity extends BaseConnectEntity {
 	private int id;
 	// 发布者姓名
 	private String name;
+	// 用户id
+	private int userId;
 	// 发布的消息
 	private String message;
 	// 发布时间
 	private String time;
 	// 评论内容
 	private List<CommentEntity> ltComment;
-//	评论内容显示控件
+	// 评论内容显示控件
 	private LinearLayout llyout;
-	
-	
+
 	@Override
 	public LinkedHashMap<String, Object> getMap() {
 		LinkedHashMap<String, Object> map = new LinkedHashMap<String, Object>();
-		map.put("id", id);
+		map.put("userId", MyApplication.userEntity.getId());
 		map.put("name", name);
 		map.put("message", message);
 		map.put("time", time);
 		return map;
 	}
-	
+
 	public LinearLayout getLlyout() {
 		return llyout;
 	}
@@ -42,7 +45,6 @@ public class MessageEntity extends BaseConnectEntity {
 	public void setLlyout(LinearLayout llyout) {
 		this.llyout = llyout;
 	}
-
 
 	public List<CommentEntity> getLtComment() {
 		return ltComment;

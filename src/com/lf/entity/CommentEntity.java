@@ -25,7 +25,6 @@ public class CommentEntity extends BaseConnectEntity {
 	@Override
 	public LinkedHashMap<String, Object> getMap() {
 		LinkedHashMap<String, Object> map = new LinkedHashMap<String, Object>();
-		map.put("id", id);
 		map.put("messageId", messageId);
 		map.put("name", name);
 		map.put("message", message);

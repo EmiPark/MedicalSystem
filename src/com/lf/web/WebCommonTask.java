@@ -70,7 +70,7 @@ public class WebCommonTask extends AsyncTask<Object, Object, Object> {
 		if (isSuccesed(result)) {
 			Log.e("tag", "--->" + result.toString());
 			listener.Succes(connect, result);
-		} 
+		}
 		if (progressDialog != null) {
 			progressDialog.dismiss();
 		}

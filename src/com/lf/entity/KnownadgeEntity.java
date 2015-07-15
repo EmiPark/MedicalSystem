@@ -2,7 +2,7 @@ package com.lf.entity;
 
 
 /**
- * 用户数据保存类
+ * 知识数据保存类
  * 
  * @author
  * 
