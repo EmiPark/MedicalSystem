@@ -52,17 +52,14 @@
             android:orientation="horizontal"
             android:padding="5dp" >
 
-            <TextView
+            <EditText
                 android:id="@+id/tv_msg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:enabled="false"
                 android:gravity="center_vertical"
                 android:hint="写下你的心情，让朋友们了解你的生活"
-                android:inputType="textWebEmailAddress"
                 android:padding="5dp"
-                android:singleLine="true"
                 android:textColor="@color/black" />
         </LinearLayout>
     </LinearLayout>

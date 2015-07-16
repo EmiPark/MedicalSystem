@@ -60,7 +60,7 @@ public class SendMessageActivity extends BaseActivity implements
 	 * 发布说说处理
 	 */
 	private void sendDo() {
-		entity.setTime(UtilManage.getCurrentTime("yyyy-MM-dd HH:mm"));
+		entity.setTime(UtilManage.getCurrentTimeBy("yyyy-MM-dd HH:mm"));
 		String msg = etvMsg.getText().toString();
 		if ("".equals(msg)) {
 			showMsg(R.string.simple);
