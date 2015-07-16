@@ -7,6 +7,7 @@ import android.widget.ListView;
 import com.alibaba.fastjson.JSONObject;
 import com.bysj.zzx.R;
 import com.lf.adapter.MessageAdapter;
+import com.lf.entity.BaseConnectEntity;
 import com.lf.entity.MessageEntity;
 import com.lf.web.Global.Connect;
 import com.lf.web.Global.ConnectListener;
@@ -19,7 +20,7 @@ import com.lf.web.WebCommonTask;
  * 
  */
 public class MessageActivity extends BaseActivity implements ConnectListener {
-	private MessageEntity mEntity;
+	private BaseConnectEntity mEntity;
 	private MessageAdapter adapter;
 
 	@Override
@@ -30,7 +31,7 @@ public class MessageActivity extends BaseActivity implements ConnectListener {
 
 	@Override
 	protected void initResource() {
-		mEntity = new MessageEntity();
+		mEntity = new BaseConnectEntity();
 		mEntity.setMothed("getAllMeesage");
 		adapter = new MessageAdapter(this);
 	}
@@ -62,7 +63,16 @@ public class MessageActivity extends BaseActivity implements ConnectListener {
 	@Override
 	public void onClick(View v) {
 		super.onClick(v);
-		finish();
+		switch (v.getId()) {
+		case R.id.btn_send:
+			jumpActivity(SendMessageActivity.class);
+			break;
+		case R.id.btn_back:
+			finish();
+			break;
+		default:
+			break;
+		}
 	}
 
 }

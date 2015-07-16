@@ -12,11 +12,17 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bysj.zzx.R;
+import com.lf.common.MyApplication;
 import com.lf.dialog.commentDialog;
 import com.lf.entity.CommentEntity;
+import com.lf.entity.DeleteMessageEntity;
 import com.lf.entity.MessageEntity;
+import com.lf.web.Global.Connect;
+import com.lf.web.Global.ConnectListener;
+import com.lf.web.WebCommonTask;
 
 /**
  * 朋友圈说说信息封装
@@ -24,11 +30,13 @@ import com.lf.entity.MessageEntity;
  * @author WZG
  * 
  */
-public class MessageAdapter extends BaseAdapter {
+public class MessageAdapter extends BaseAdapter implements ConnectListener {
 	// 数据
 	private List<MessageEntity> ltData;
 	// 上下文
 	private Context context;
+	// 当前点击位置
+	private int currentPosition = -1;
 
 	public MessageAdapter(Context context) {
 		ltData = new ArrayList<MessageEntity>();
@@ -82,6 +90,7 @@ public class MessageAdapter extends BaseAdapter {
 		}
 		setListener(position, holder);
 		setData(position, holder);
+		showUi(position, holder);
 		return convertView;
 	}
 
@@ -123,14 +132,14 @@ public class MessageAdapter extends BaseAdapter {
 	/**
 	 * 更具不同用户显示不同的界面
 	 */
-	// private void showUi(int postion, ViewHolder holder) {
-	// MessageEntity entity = ltData.get(postion);
-	// if (entity.getName().equals(MyApplication.userEntity.)) {
-	// holder.tvDelete.setVisibility(View.VISIBLE);
-	// } else {
-	// holder.tvDelete.setVisibility(View.GONE);
-	// }
-	// }
+	private void showUi(int postion, ViewHolder holder) {
+		MessageEntity entity = ltData.get(postion);
+		if (entity.getName().equals(MyApplication.userEntity.getName())) {
+			holder.tvDelete.setVisibility(View.VISIBLE);
+		} else {
+			holder.tvDelete.setVisibility(View.GONE);
+		}
+	}
 
 	/**
 	 * 自定义点击监听器
@@ -142,6 +151,7 @@ public class MessageAdapter extends BaseAdapter {
 		private MessageEntity mEntity;
 
 		private MyListener(int position) {
+			currentPosition = position;
 			this.mEntity = ltData.get(position);
 		}
 
@@ -149,7 +159,9 @@ public class MessageAdapter extends BaseAdapter {
 		public void onClick(View v) {
 			switch (v.getId()) {
 			case R.id.tv_delete:
-				deleteDo();
+				DeleteMessageEntity entity = new DeleteMessageEntity();
+				entity.setId(mEntity.getId());
+				deleteDo(entity);
 				break;
 			case R.id.tv_comment:
 				new commentDialog(context, mEntity).show();
@@ -162,7 +174,7 @@ public class MessageAdapter extends BaseAdapter {
 		/**
 		 * 删除处理
 		 */
-		private void deleteDo() {
+		private void deleteDo(final DeleteMessageEntity entity) {
 			// 确认对话框
 			AlertDialog.Builder builder = new AlertDialog.Builder(context);
 			builder.setTitle("删除说说");
@@ -171,13 +183,14 @@ public class MessageAdapter extends BaseAdapter {
 					new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
+							new WebCommonTask(context, MessageAdapter.this,
+									"删除。。。。").execute(Connect.DL_MSG, entity);
 						}
 					});
 			builder.setNegativeButton("取消", null);
 			builder.create();
 			builder.show();
 		}
-
 	}
 
 	/**
@@ -197,6 +210,17 @@ public class MessageAdapter extends BaseAdapter {
 		private TextView tvDelete;
 		// 评论的listview
 		private LinearLayout ltView;
+	}
+
+	@Override
+	public void Succes(Connect connect, Object object) {
+		ltData.remove(currentPosition);
+		notifyDataSetChanged();
+	}
+
+	@Override
+	public void Failed(String message) {
+		Toast.makeText(context, "失败", Toast.LENGTH_SHORT).show();
 	}
 
 }

@@ -83,17 +83,4 @@ public class WebCommonFashion {
 		}
 	}
 
-	/**
-	 * 返回数据是否正确
-	 * 
-	 * @param object
-	 * @return
-	 */
-	private boolean isSuccesed(Object object) {
-		if (null == object || "failed".equals(object.toString())) {
-			return false;
-		}
-		return true;
-	}
-
 }

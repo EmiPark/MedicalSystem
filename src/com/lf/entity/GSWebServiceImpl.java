@@ -62,18 +62,26 @@ public class GSWebServiceImpl implements IGSWebService {
 	}
 
 	@Override
-	public String comment(String messageId, String name, String message) {
+	public String comment(int messageId, String name, String message) {
 		getSession().createSQLQuery(
 				"insert into comment(messageId,name,message) values" + "("
-						+ messageId + "','" + name + "','" + message + "')")
+						+ messageId + ",'" + name + "','" + message + "')")
 				.executeUpdate();
 		return "success";
 	}
 
 	@Override
-	public String getAllMeesage(int userId) {
-		List a = getSession()
-				.createSQLQuery("select * from message where userId='" + userId)
+	public String commitMsg(String name, String message, String time) {
+		getSession().createSQLQuery(
+				"insert into message(name,message,time) values" + "('" + name
+						+ "','" + message + "','" + time + "')")
+				.executeUpdate();
+		return "success";
+	}
+
+	@Override
+	public String getAllMeesage() {
+		List a = getSession().createSQLQuery("select * from message")
 				.addEntity(MessageEntity.class).list();
 		if (a.size() > 0) {
 			for (int index = 0; index < a.size(); index++) {
@@ -165,4 +173,12 @@ public class GSWebServiceImpl implements IGSWebService {
 			return "failed&暂时还没有数据";
 		}
 	}
+
+	@Override
+	public String deleteMsg(int id) {
+		String sql = "delete from message where id=" + id;
+		getSession().createSQLQuery(sql).executeUpdate();
+		return "success";
+	}
+
 }

@@ -10,7 +10,12 @@ import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.util.AttributeSet;
 import android.view.View;
-
+/**
+ * 折线统计图
+ * 自定义
+ * @author wzg
+ *
+ */
 public class PathView extends View {
 
 	public static final int DAY_WEEK = 0;

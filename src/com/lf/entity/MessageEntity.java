@@ -3,8 +3,6 @@ package com.lf.entity;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import com.lf.common.MyApplication;
-
 import android.widget.LinearLayout;
 
 /**
@@ -17,8 +15,6 @@ public class MessageEntity extends BaseConnectEntity {
 	private int id;
 	// 发布者姓名
 	private String name;
-	// 用户id
-	private int userId;
 	// 发布的消息
 	private String message;
 	// 发布时间
@@ -31,7 +27,6 @@ public class MessageEntity extends BaseConnectEntity {
 	@Override
 	public LinkedHashMap<String, Object> getMap() {
 		LinkedHashMap<String, Object> map = new LinkedHashMap<String, Object>();
-		map.put("userId", MyApplication.userEntity.getId());
 		map.put("name", name);
 		map.put("message", message);
 		map.put("time", time);
