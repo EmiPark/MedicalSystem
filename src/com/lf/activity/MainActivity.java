@@ -1,10 +1,12 @@
 package com.lf.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -44,11 +46,11 @@ public class MainActivity extends BaseActivity implements ConnectListener {
 	protected void initResource() {
 		userEntity = new UserEntity();
 		userEntity.setMothed("login");
-
-		userEntity.setName("罗飞");
-		MyApplication.userEntity = userEntity;
-		jumpActivity(ControllActivity.class);
-		finish();
+//
+//		userEntity.setName("罗飞");
+//		MyApplication.userEntity = userEntity;
+//		jumpActivity(ControllActivity.class);
+//		finish();
 	}
 
 	@Override
@@ -136,4 +138,5 @@ public class MainActivity extends BaseActivity implements ConnectListener {
 	public void Failed(String message) {
 		showMsg("Failed");
 	}
+
 }
