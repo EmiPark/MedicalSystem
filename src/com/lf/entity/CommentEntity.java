@@ -19,7 +19,7 @@ public class CommentEntity extends BaseConnectEntity {
 	private String message;
 
 	public CommentEntity() {
-		setMessage("comment");
+		setMothed("comment");
 	}
 
 	@Override

@@ -27,6 +27,8 @@ public class WelcomActivity extends BaseActivity {
 
 	@Override
 	protected void initResource() {
+		jumpActivity(MainActivity.class);
+		finish();
 		// 延迟进入主界面
 		handler.sendEmptyMessageDelayed(1000, 5000);
 	}

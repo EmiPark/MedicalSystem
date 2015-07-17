@@ -44,11 +44,11 @@ public class MainActivity extends BaseActivity implements ConnectListener {
 	protected void initResource() {
 		userEntity = new UserEntity();
 		userEntity.setMothed("login");
-//
-//		userEntity.setName("罗飞");
-//		MyApplication.userEntity = userEntity;
-//		jumpActivity(ControllActivity.class);
-//		finish();
+		//
+		// userEntity.setName("罗飞");
+		// MyApplication.userEntity = userEntity;
+		// jumpActivity(ControllActivity.class);
+		// finish();
 	}
 
 	@Override
@@ -134,7 +134,7 @@ public class MainActivity extends BaseActivity implements ConnectListener {
 
 	@Override
 	public void Failed(String message) {
-		showMsg("Failed");
+		showMsg(message);
 	}
 
 }

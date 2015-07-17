@@ -1,5 +1,9 @@
 package com.lf.activity;
 
+import java.util.List;
+
+import org.w3c.dom.Comment;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -8,6 +12,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.bysj.zzx.R;
 import com.lf.adapter.MessageAdapter;
 import com.lf.entity.BaseConnectEntity;
+import com.lf.entity.CommentEntity;
 import com.lf.entity.MessageEntity;
 import com.lf.web.Global.Connect;
 import com.lf.web.Global.ConnectListener;
@@ -51,8 +56,16 @@ public class MessageActivity extends BaseActivity implements ConnectListener {
 
 	@Override
 	public void Succes(Connect connect, Object object) {
-		adapter.setData(JSONObject.parseArray(object.toString(),
-				MessageEntity.class));
+		JSONObject jObject = JSONObject.parseObject(object.toString());
+		List<MessageEntity> ltEntities = JSONObject.parseArray(
+				jObject.getString("msg"), MessageEntity.class);
+		for (MessageEntity entity : ltEntities) {
+			List<CommentEntity> lCommentEntities = JSONObject.parseArray(
+					jObject.getString(String.valueOf(entity.getId())),
+					CommentEntity.class);
+			entity.setLtComment(lCommentEntities);
+		}
+		adapter.setData(ltEntities);
 	}
 
 	@Override

@@ -87,8 +87,9 @@ public class WebCommonTask extends AsyncTask<Object, Object, Object> {
 			listener.Failed("失败");
 			return false;
 		}
-		if (object.toString().indexOf("failed") > 0) {
+		if (object.toString().indexOf("failed") >= 0) {
 			String[] msg = object.toString().split("&");
+			Log.e("tag", "msg->" + msg[0] + "  ->" + msg[1]);
 			listener.Failed(msg[1]);
 			return false;
 		}

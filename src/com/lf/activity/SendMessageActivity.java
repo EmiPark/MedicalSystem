@@ -1,6 +1,7 @@
 package com.lf.activity;
 
 import com.bysj.zzx.R;
+import com.lf.common.MyApplication;
 import com.lf.common.UtilManage;
 import com.lf.entity.MessageEntity;
 import com.lf.web.Global.Connect;
@@ -19,9 +20,9 @@ import android.widget.EditText;
  */
 public class SendMessageActivity extends BaseActivity implements
 		ConnectListener {
-//	消息数据
+	// 消息数据
 	private MessageEntity entity;
-//	消息内容控件
+	// 消息内容控件
 	private EditText etvMsg;
 
 	@Override
@@ -33,7 +34,8 @@ public class SendMessageActivity extends BaseActivity implements
 	@Override
 	protected void initResource() {
 		entity = new MessageEntity();
-		entity.setMessage("commitMsg");
+		entity.setMothed("commitMsg");
+		entity.setName(MyApplication.userEntity.getName());
 	}
 
 	@Override
