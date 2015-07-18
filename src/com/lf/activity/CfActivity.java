@@ -56,7 +56,7 @@ public class CfActivity extends BaseActivity implements ConnectListener {
 		case R.id.btn_history:
 			Bundle bundle = new Bundle();
 			bundle.putInt("type", 8);
-			jumpActivity(LineChartActivity.class, bundle);
+			jumpActivity(NormalHistoryActivity.class, bundle);
 		default:
 			break;
 		}

@@ -87,7 +87,6 @@
                 android:background="@color/white"
                 android:gravity="center_vertical"
                 android:hint="输入疾病名"
-                android:inputType="number"
                 android:padding="5dp"
                 android:singleLine="true"
                 android:textColor="@color/black" />

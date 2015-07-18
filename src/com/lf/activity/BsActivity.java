@@ -60,7 +60,7 @@ public class BsActivity extends BaseActivity implements ConnectListener {
 		case R.id.btn_history:
 			Bundle bundle = new Bundle();
 			bundle.putInt("type", 9);
-			jumpActivity(LineChartActivity.class, bundle);
+			jumpActivity(NormalHistoryActivity.class, bundle);
 		default:
 			break;
 		}

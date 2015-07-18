@@ -18,6 +18,8 @@ import android.util.Log;
 import android.util.LruCache;
 import android.widget.ImageView;
 
+import com.bysj.zzx.R;
+
 /**
  * 异步加载网络图片，实现硬软引用本地缓存机制。
  * 
@@ -36,7 +38,7 @@ public class AsyncImageLoader {
 	private ExecutorService mImageThreadPool = null;
 	// 缓存Image的类，当存储Image的大小大于LruCache设定的值，系统自动释放内存
 	private LruCache<String, Bitmap> mMemoryCache;
-	//	當前操作類
+	// 當前操作類
 	private static AsyncImageLoader loader;
 
 	/**
@@ -93,7 +95,10 @@ public class AsyncImageLoader {
 	 * @param imageView
 	 */
 	public void loadDrawable(String url, final ImageView imageView) {
-		ImgEntity imgEntity=new ImgEntity();
+		if (url == null || "".equals(url)) {
+			return;
+		}
+		ImgEntity imgEntity = new ImgEntity();
 		imgEntity.setUrl(url);
 		imgEntity.setSaveState(2);
 		Bitmap bitmap = getLocalDrawable(imgEntity);
@@ -101,8 +106,8 @@ public class AsyncImageLoader {
 			imageView.setImageBitmap(bitmap);
 		} else {
 			// 添加等待图片
-			// imageView.setImageBitmap(new BitmapFactory().decodeResource(
-			// context.getResources(), R.drawable.ic_launcher));
+//			imageView.setImageBitmap(new BitmapFactory().decodeResource(
+//					context.getResources(), R.drawable.bg_welcom));
 			setImageDownlaod(imageView, imgEntity);
 			Log.e("tag", "网络获取图片");
 		}
@@ -150,7 +155,6 @@ public class AsyncImageLoader {
 		}
 		return bitmap;
 	}
-	
 
 	/**
 	 * 给控件设置网路下载的图片
@@ -186,8 +190,8 @@ public class AsyncImageLoader {
 	 */
 	private ExecutorService getThreadPool() {
 		if (mImageThreadPool == null) {
-				if (mImageThreadPool == null) {
-					synchronized (ExecutorService.class) {
+			if (mImageThreadPool == null) {
+				synchronized (ExecutorService.class) {
 					// 为了下载图片更加的流畅，我们用了2个线程来下载图片
 					mImageThreadPool = Executors.newFixedThreadPool(2);
 				}
@@ -213,30 +217,31 @@ public class AsyncImageLoader {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 更具设置保存图片保存图片
+	 * 
 	 * @param bitmap
 	 */
-	private void save(Bitmap bitmap,ImgEntity imgEntity){
+	private void save(Bitmap bitmap, ImgEntity imgEntity) {
 		// 得到的图片放入到硬缓存队列里面
-					if (imgEntity.getSaveState() == 1 || imgEntity.getSaveState() == 4) {
-						mMemoryCache.put(imgEntity.getUrl(), bitmap);
-					}
-					// 得到的图片放入到软缓存队列里面
-					if (imgEntity.getSaveState() == 2 || imgEntity.getSaveState() == 5) {
-						imageCache.put(imgEntity.getUrl(), new SoftReference<Bitmap>(
-								bitmap));
-					}
-					// 得到的图片放入本地
-					if (imgEntity.getSaveState() == 3 || imgEntity.getSaveState() == 4
-							|| imgEntity.getSaveState() == 5) {
-						try {
-							fileUtils.savaBitmap(imgEntity.getName(), bitmap);
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-					}
+		if (imgEntity.getSaveState() == 1 || imgEntity.getSaveState() == 4) {
+			mMemoryCache.put(imgEntity.getUrl(), bitmap);
+		}
+		// 得到的图片放入到软缓存队列里面
+		if (imgEntity.getSaveState() == 2 || imgEntity.getSaveState() == 5) {
+			imageCache.put(imgEntity.getUrl(),
+					new SoftReference<Bitmap>(bitmap));
+		}
+		// 得到的图片放入本地
+		if (imgEntity.getSaveState() == 3 || imgEntity.getSaveState() == 4
+				|| imgEntity.getSaveState() == 5) {
+			try {
+				fileUtils.savaBitmap(imgEntity.getName(), bitmap);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	// 使用方法

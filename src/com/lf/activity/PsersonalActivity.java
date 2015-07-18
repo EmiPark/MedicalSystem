@@ -43,6 +43,7 @@ public class PsersonalActivity extends BaseActivity implements ConnectListener {
 	protected void initResource() {
 		pEntity = new PersonEntity();
 		entity = MyApplication.userEntity;
+		pEntity.setId(entity.getId());
 		if (null == MyApplication.userEntity.getNameS()) {
 			isExit = false;
 		} else {
@@ -120,7 +121,7 @@ public class PsersonalActivity extends BaseActivity implements ConnectListener {
 
 	@Override
 	public void Succes(Connect connect, Object object) {
-		entity.setName(name);
+		entity.setNameS(name);
 		entity.setTel(tel);
 		entity.setAge(age);
 		entity.setAds(ads);

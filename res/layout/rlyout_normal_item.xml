@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp" >
 
     <TextView
-        android:id="@+id/tv_msg"
-        android:layout_width="100dp"
+        android:id="@+id/tv_firtst"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/img"
-        android:singleLine="true"
-        android:text="intedddddd"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
+        android:layout_weight="1"
+        android:singleLine="true" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/tv_remark"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:singleLine="true" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:singleLine="true"
+        android:textColor="@color/green" />
+
+</LinearLayout>

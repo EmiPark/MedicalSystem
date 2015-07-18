@@ -70,7 +70,9 @@ public class MsgAdatapter extends BaseAdapter {
 			holder = (Viewholder) convertView.getTag();
 		}
 		MsgEntity entity = ltData.get(position);
-		if (!"".equals(entity.getUrl())) {
+		if (null == entity.getUrl()) {
+			holder.img.setVisibility(View.GONE);
+		} else {
 			loader.loadDrawable(entity.getUrl(), holder.img);
 		}
 		holder.tv.setText(entity.getMsg());

@@ -13,7 +13,7 @@ import com.lf.entity.SearchEntity;
  * 
  */
 public class SerachDialog extends BaseDialog {
-	//数据
+	// 数据
 	private SearchEntity entity;
 
 	public SerachDialog(Context context, SearchEntity entity) {
@@ -28,8 +28,11 @@ public class SerachDialog extends BaseDialog {
 
 	@Override
 	protected void initWidget() {
-		((TextView) findViewById(R.id.tv_title)).setText(entity.getName());
-		((TextView) findViewById(R.id.tv_msg)).setText(entity.getMsg());
+		String[] msg = entity.getMsg().split("&");
+		((TextView) findViewById(R.id.title)).setText(entity.getName());
+		((TextView) findViewById(R.id.tv_msg)).setText(msg[0]);
+		((TextView) findViewById(R.id.tv_yao)).setText(msg[1]);
+
 	}
 
 }

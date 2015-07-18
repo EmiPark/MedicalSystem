@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="400dp"
-    android:layout_height="600dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@color/gray"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:paddingBottom="20dp" >
 
     <RelativeLayout
         android:id="@+id/rlyout_title"
@@ -34,27 +35,27 @@
         android:background="@color/white"
         android:orientation="vertical" >
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tv_msg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/bg_tv_down_line"
+            android:background="@color/white"
             android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="5dp" >
+            android:inputType="textWebEmailAddress"
+            android:singleLine="true"
+            android:text="ddd   我来到"
+            android:textColor="@color/black" />
 
-            <TextView
-                android:id="@+id/tv_msg"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:enabled="false"
-                android:gravity="center_vertical"
-                android:inputType="textWebEmailAddress"
-                android:padding="5dp"
-                android:singleLine="true"
-                android:textColor="@color/black" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_yao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:inputType="textWebEmailAddress"
+            android:singleLine="true"
+            android:text="ddd   我来到"
+            android:textColor="@color/black" />
     </LinearLayout>
 
 </RelativeLayout>

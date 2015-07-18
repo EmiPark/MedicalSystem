@@ -1,6 +1,8 @@
 package com.lf.activity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
@@ -53,6 +55,8 @@ public class NormalHistoryActivity extends BaseActivity implements
 	@Override
 	protected void initWidget() {
 		((TextView) findViewById(R.id.tv_title)).setText(title);
+		ListView lView=(ListView)findViewById(R.id.ltview);
+		lView.setAdapter(adatapter);
 	}
 
 	@Override
@@ -64,6 +68,11 @@ public class NormalHistoryActivity extends BaseActivity implements
 	@Override
 	public void Failed(String message) {
 		showMsg(message);
+	}
+	@Override
+	public void onClick(View v) {
+		super.onClick(v);
+		finish();
 	}
 
 }

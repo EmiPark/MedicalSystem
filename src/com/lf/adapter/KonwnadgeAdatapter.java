@@ -3,17 +3,16 @@ package com.lf.adapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bysj.zzx.R;
-import com.lf.common.AsyncImageLoader;
-import com.lf.entity.KnownadgeEntity;
-import com.lf.entity.MsgEntity;
-
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bysj.zzx.R;
+import com.lf.common.AsyncImageLoader;
+import com.lf.entity.KnownadgeEntity;
 
 /**
  * 知识封装类
@@ -71,7 +70,9 @@ public class KonwnadgeAdatapter extends BaseAdapter {
 			holder = (Viewholder) convertView.getTag();
 		}
 		KnownadgeEntity entity = ltData.get(position);
-		if (!"".equals(entity.getUrl())) {
+		if (null == entity.getUrl()) {
+			holder.img.setVisibility(View.GONE);
+		} else {
 			loader.loadDrawable(entity.getUrl(), holder.img);
 		}
 		holder.tv.setText(entity.getMessage());

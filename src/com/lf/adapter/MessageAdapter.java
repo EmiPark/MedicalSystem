@@ -117,11 +117,12 @@ public class MessageAdapter extends BaseAdapter implements ConnectListener {
 		entity.setLlyout(holder.ltView);
 		holder.tvName.setText(entity.getName() + "  时间：" + entity.getTime());
 		holder.tvMessage.setText("说说：" + entity.getMessage());
-		List<CommentEntity> mEntities = new ArrayList<CommentEntity>();
+		List<CommentEntity> mEntities = entity.getLtComment();
 		holder.ltView.removeAllViews();
 		for (CommentEntity entityC : mEntities) {
 			View view = View.inflate(context, R.layout.rlyout_comment_item,
 					null);
+			view.setId(entityC.getId());
 			holder.ltView.addView(view);
 			TextView tvMessage = (TextView) view.findViewById(R.id.tv_name);
 			// 设置评论人姓名（截取小部分）+评论

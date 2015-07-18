@@ -27,7 +27,6 @@ public abstract class BaseDialog extends Dialog implements OnClickListener {
 
 	public BaseDialog(Context context, int style) {
 		super(context, style);
-		// // 设置显示动画
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 	}

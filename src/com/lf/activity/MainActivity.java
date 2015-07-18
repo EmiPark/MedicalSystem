@@ -44,11 +44,6 @@ public class MainActivity extends BaseActivity implements ConnectListener {
 	protected void initResource() {
 		userEntity = new UserEntity();
 		userEntity.setMothed("login");
-		//
-		// userEntity.setName("罗飞");
-		// MyApplication.userEntity = userEntity;
-		// jumpActivity(ControllActivity.class);
-		// finish();
 	}
 
 	@Override
@@ -120,6 +115,7 @@ public class MainActivity extends BaseActivity implements ConnectListener {
 			MyApplication.userEntity = JSONObject.parseObject(
 					object.toString(), UserEntity.class);
 			jumpActivity(ControllActivity.class);
+			finish();
 			break;
 		case REGISTER:
 			((RadioButton) findViewById(R.id.btn_log)).setChecked(true);

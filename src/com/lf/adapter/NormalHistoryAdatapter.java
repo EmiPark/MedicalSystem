@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -59,20 +60,34 @@ public class NormalHistoryAdatapter extends BaseAdapter {
 			holder = new Viewholder();
 			convertView = View.inflate(context, R.layout.rlyout_normal_item,
 					null);
-			holder.tv = (TextView) convertView.findViewById(R.id.tv_msg);
+			holder.tvFirst = (TextView) convertView
+					.findViewById(R.id.tv_firtst);
+			holder.tvRemark = (TextView) convertView
+					.findViewById(R.id.tv_remark);
+			holder.tvTime = (TextView) convertView.findViewById(R.id.tv_time);
 			convertView.setTag(holder);
 		} else {
 			holder = (Viewholder) convertView.getTag();
 		}
 
 		ChangeEntity entity = ltData.get(position);
-		holder.tv.setText(entity.getNumber() + "   " + entity.getRemark()
-				+ "    " + entity.getTime());
+		String state = entity.getRemark().equals("1") ? "痊愈" : "未痊愈";
+		if (entity.getRemark().equals("-1")) {
+			holder.tvRemark.setVisibility(View.GONE);
+		} else {
+			holder.tvRemark.setText(state);
+		}
+		holder.tvFirst.setText("名：" + entity.getNumber());
+		holder.tvTime.setText("时间：" + entity.getTime());
+
 		return convertView;
 	}
 
 	private class Viewholder {
-		private TextView tv;
+		private TextView tvFirst;
+		private TextView tvRemark;
+		private TextView tvTime;
+
 	}
 
 }

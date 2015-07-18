@@ -90,8 +90,10 @@ public class KnownageFragment extends BaseFragment implements ConnectListener {
 	public void Succes(Connect connect, Object object) {
 		switch (connect) {
 		case SEARCH:
-			new SerachDialog(getActivity(), JSONObject.parseObject(
-					object.toString(), SearchEntity.class)).show();
+			SearchEntity entity = JSONObject.parseObject(object.toString(),
+					SearchEntity.class);
+			etvSearch.setText("");
+			new SerachDialog(getActivity(), entity).show();
 			break;
 		case GET_ALL_KNOW:
 			adatapter.setData(JSONObject.parseArray(object.toString(),
@@ -104,6 +106,7 @@ public class KnownageFragment extends BaseFragment implements ConnectListener {
 
 	@Override
 	public void Failed(String message) {
+		etvSearch.setText("");
 		showMsg(message);
 	}
 
