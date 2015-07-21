@@ -40,6 +40,18 @@
         android:text="个人信息"
         android:textColor="@drawable/tv_color_black"
         android:textStyle="bold" />
+    
+    <Button
+        android:id="@+id/btn_foot"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_tv_down_line"
+        android:paddingBottom="3dp"
+        android:paddingLeft="5dp"
+        android:onClick="onClick"
+        android:text="设备录入"
+        android:textColor="@drawable/tv_color_black"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/about"

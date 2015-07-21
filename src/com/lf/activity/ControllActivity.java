@@ -71,6 +71,10 @@ public class ControllActivity extends BaseFramentActivity implements
 			jumpActivity(PsersonalActivity.class);
 			break;
 		case R.id.about:
+			jumpActivity(AboutActivity.class);
+			break;
+		case R.id.btn_foot:
+			
 			break;
 		case R.id.exit:
 			android.os.Process.killProcess(android.os.Process.myPid());

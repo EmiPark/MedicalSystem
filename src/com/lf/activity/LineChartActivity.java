@@ -30,7 +30,7 @@ public class LineChartActivity extends BaseActivity implements ConnectListener {
 	private PathView pw;
 	// 标题
 	private String title;
-	// 类型1体温；2心跳；3血压；4呼吸频率；5体重;6锻炼;7吃药;8吃饭;9病史
+	// 类型1体温；2心跳；3血压；4呼吸频率；5体重;6锻炼;7吃药;8吃饭;9病史；10记步
 	private int type;
 
 	@Override
