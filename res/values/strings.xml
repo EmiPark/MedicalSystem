@@ -20,6 +20,7 @@
         <item>药物</item>
         <item>饮食</item>
         <item>病史</item>
+        <item>走路记录</item>
     </string-array>
 
 </resources>

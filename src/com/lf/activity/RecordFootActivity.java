@@ -1,16 +1,18 @@
 package com.lf.activity;
 
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
 import com.bysj.zzx.R;
+import com.lf.common.UtilManage;
 import com.lf.dialog.TimeDialog;
 import com.lf.entity.ChangeEntity;
 import com.lf.web.Global.Connect;
 import com.lf.web.Global.ConnectListener;
 import com.lf.web.WebCommonTask;
-
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 
 /**
  * 记步器录入界面
@@ -23,6 +25,7 @@ public class RecordFootActivity extends BaseActivity implements ConnectListener 
 	private EditText etvNubmer;
 	// 时间
 	private Button btnTime;
+	private int foot;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +35,16 @@ public class RecordFootActivity extends BaseActivity implements ConnectListener 
 
 	@Override
 	protected void initResource() {
-
+		foot = 2000 + (int) (Math.random() * 1000);
 	}
 
 	@Override
 	protected void initWidget() {
 		etvNubmer = (EditText) findViewById(R.id.etv_number);
+		etvNubmer.setText(String.valueOf(foot));
 		btnTime = (Button) findViewById(R.id.btn_time);
+		btnTime.setText(UtilManage.getCurrentTime("yyyy-MM-dd HH:mm"));
+		Log.e("tag","time-->" +UtilManage.getCurrentTime("yyyy-MM-dd HH:mm"));
 	}
 
 	@Override
