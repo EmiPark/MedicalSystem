@@ -23,14 +23,15 @@ public class WelcomActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		init(R.layout.activity_welcom);
+		jumpActivity(MainActivity.class);
 	}
 
 	@Override
 	protected void initResource() {
-//		jumpActivity(MainActivity.class);
-//		finish();
+		// jumpActivity(MainActivity.class);
+		// finish();
 		// 延迟进入主界面
-		 handler.sendEmptyMessageDelayed(1000, 5000);
+		// handler.sendEmptyMessageDelayed(1000, 5000);
 	}
 
 	@Override
