@@ -51,12 +51,13 @@
             android:background="@color/white"
             android:orientation="vertical" >
 
-            <ImageView
+            <com.lf.common.RoundImage
+                android:id="@+id/img_hoto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/btn_l_r_boy" />
+                android:onClick="onClick" />
 
             <LinearLayout
                 android:layout_width="match_parent"

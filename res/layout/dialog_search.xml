@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/gray"
     android:orientation="vertical"
     android:paddingBottom="20dp" >
@@ -11,16 +11,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/green"
-        android:gravity="center"
-        android:padding="10dp" >
+        >
+        
+        
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@color/bg_no"
+            android:onClick="onClick"
+            android:text="&lt;返回"
+            android:textColor="@color/whilte"
+           />
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="title"
+            android:text="疾病"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -31,30 +43,58 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rlyout_title"
-        android:layout_marginTop="35dp"
-        android:background="@color/white"
         android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tv_sub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:inputType="textWebEmailAddress"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:text="皮肤病"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/tv_msg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:background="@color/white"
             android:gravity="center_vertical"
             android:inputType="textWebEmailAddress"
+            android:padding="5dp"
             android:singleLine="true"
-            android:text="ddd   我来到"
+            android:text="这是一种病，简单介绍"
             android:textColor="@color/black" />
-
+        
         <TextView
-            android:id="@+id/tv_yao"
+            android:id="@+id/tv_zl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:background="@color/white"
             android:gravity="center_vertical"
             android:inputType="textWebEmailAddress"
+            android:padding="5dp"
             android:singleLine="true"
-            android:text="ddd   我来到"
+            android:text="治疗方法"
+            android:textColor="@color/black" />
+        
+          <TextView
+            android:id="@+id/tv_jc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:inputType="textWebEmailAddress"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:text="检查"
             android:textColor="@color/black" />
     </LinearLayout>
 

@@ -5,13 +5,17 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.bysj.zzx.R;
+import com.lf.common.AsyncImageLoader;
 import com.lf.common.MyApplication;
+import com.lf.common.RoundImage;
 import com.lf.fragment.BaseFragment;
 import com.lf.fragment.ContentFragment;
+import com.lf.fragment.FriendFragment;
 import com.lf.fragment.KnownageFragment;
 import com.lf.fragment.MsgFragment;
 import com.lf.view.DragLayout;
 import com.lf.view.DragLayout.DragListener;
+import com.lf.web.Global;
 
 /**
  * 主界面内容显示
@@ -22,9 +26,13 @@ import com.lf.view.DragLayout.DragListener;
 public class ControllActivity extends BaseFramentActivity implements
 		DragListener {
 	// 内容；知识；资讯
-	private BaseFragment cFragment, sFragment, mFragment;
+	private BaseFragment cFragment, sFragment, mFragment, fFragment;
 	// 可拖动侧边栏控件
 	private DragLayout dl;
+//	用户名
+	private TextView tvName;
+//	头像
+	private RoundImage image;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +45,7 @@ public class ControllActivity extends BaseFramentActivity implements
 		mFragment = new MsgFragment();
 		sFragment = new KnownageFragment();
 		cFragment = new ContentFragment();
+		fFragment = new FriendFragment();
 	}
 
 	@Override
@@ -45,8 +54,17 @@ public class ControllActivity extends BaseFramentActivity implements
 		dl.setLeftRange(240);
 		dl.setDragListener(this);
 		setFragment(R.id.rlyout_content, cFragment);
-		((TextView) findViewById(R.id.tv_name))
-				.setText(MyApplication.userEntity.getName());
+		tvName = ((TextView) findViewById(R.id.tv_name));
+		image = (RoundImage) findViewById(R.id.photo);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		tvName.setText(MyApplication.userEntity.getName());
+		AsyncImageLoader loader = AsyncImageLoader.getAsyncImageLoader(this);
+		loader.loadDrawable(
+				Global.Photo_URL + MyApplication.userEntity.getPhoto(), image);
 	}
 
 	@Override
@@ -56,10 +74,13 @@ public class ControllActivity extends BaseFramentActivity implements
 			dl.open();
 			break;
 		case R.id.add:
-			jumpActivity(MessageActivity.class);
+			jumpActivity(SendMessageActivity.class);
 			break;
 		case R.id.rbtn_health:
 			setFragment(R.id.rlyout_content, cFragment);
+			break;
+		case R.id.friend:
+			setFragment(R.id.rlyout_content, fFragment);
 			break;
 		case R.id.rbtn_knownadge:
 			setFragment(R.id.rlyout_content, sFragment);
@@ -68,7 +89,9 @@ public class ControllActivity extends BaseFramentActivity implements
 			setFragment(R.id.rlyout_content, mFragment);
 			break;
 		case R.id.person:
-			jumpActivity(PsersonalActivity.class);
+			Bundle bundle = new Bundle();
+			bundle.putBoolean("type", false);
+			jumpActivity(PsersonalActivity.class, bundle);
 			break;
 		case R.id.about:
 			jumpActivity(AboutActivity.class);

@@ -1,7 +1,5 @@
 package com.lf.entity;
 
-import java.util.LinkedHashMap;
-
 /**
  * 用户数据保存类
  * 
@@ -21,10 +19,59 @@ public class SearchEntity extends BaseConnectEntity {
 	 * 介绍
 	 */
 	private String msg;
+	/**
+	 * 所属科
+	 */
+	private String sub;
+	/**
+	 * 治疗
+	 */
+	private String deal;
+	/**
+	 * 檢查
+	 */
+	private String check;
 
 	public SearchEntity() {
 		setMothed("search");
 	}
+
+	public String getSub() {
+		return sub;
+	}
+
+	public void setSub(String sub) {
+		this.sub = sub;
+	}
+
+	public String getDeal() {
+		return deal;
+	}
+
+	public void setDeal(String deal) {
+		this.deal = deal;
+	}
+
+	public String getCheck() {
+		return check;
+	}
+
+	public void setCheck(String check) {
+		this.check = check;
+	}
+
+	public String getPre() {
+		return pre;
+	}
+
+	public void setPre(String pre) {
+		this.pre = pre;
+	}
+
+	/**
+	 * 首字母
+	 */
+	private String pre;
 
 	public int getId() {
 		return id;
@@ -48,12 +95,5 @@ public class SearchEntity extends BaseConnectEntity {
 
 	public void setMsg(String msg) {
 		this.msg = msg;
-	}
-
-	@Override
-	public LinkedHashMap<String, Object> getMap() {
-		LinkedHashMap<String, Object> map = new LinkedHashMap<String, Object>();
-		map.put("name", name);
-		return map;
 	}
 }

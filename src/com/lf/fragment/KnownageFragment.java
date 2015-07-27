@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.bysj.zzx.R;
+import com.lf.activity.SortListViewDialog;
 import com.lf.adapter.KonwnadgeAdatapter;
 import com.lf.dialog.SerachDialog;
 import com.lf.entity.KnownadgeEntity;
@@ -64,7 +65,8 @@ public class KnownageFragment extends BaseFragment implements ConnectListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btn_search:
-			searchDo();
+			// searchDo();
+			new SortListViewDialog(getActivity()).show();
 			break;
 		default:
 			break;

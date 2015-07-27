@@ -3,9 +3,7 @@ package com.lf.activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
@@ -29,10 +27,6 @@ public class MainActivity extends BaseActivity implements ConnectListener {
 	private UserEntity userEntity;
 	// 用户和密码
 	private EditText etvName, etvPsd;
-	// 登录选项
-	private RadioButton rbtnLogin;
-	// 登录按钮
-	private Button btnLogin;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,23 +44,18 @@ public class MainActivity extends BaseActivity implements ConnectListener {
 	protected void initWidget() {
 		etvName = (EditText) findViewById(R.id.etv_name);
 		etvPsd = (EditText) findViewById(R.id.etv_password);
-		rbtnLogin = (RadioButton) findViewById(R.id.btn_log);
-		btnLogin = (Button) findViewById(R.id.btn_longin);
 	}
 
 	// @Override登陆和注册监听
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.btn_log:
-			userEntity.setMothed("login");
-			btnLogin.setText("登录");
-			break;
-		case R.id.btn_register:
-			userEntity.setMothed("register");
-			btnLogin.setText("注册");
-			break;
 		case R.id.btn_longin:
 			loginDo();
+			break;
+		case R.id.tv_register:
+			Bundle bundle = new Bundle();
+			bundle.putBoolean("type", true);
+			jumpActivity(PsersonalActivity.class, bundle);
 			break;
 		default:
 			break;
@@ -85,13 +74,7 @@ public class MainActivity extends BaseActivity implements ConnectListener {
 		}
 		userEntity.setName(name);
 		userEntity.setPassword(psd);
-		if (rbtnLogin.isChecked()) {
-			new WebCommonTask(this, this, null).execute(Connect.LOGIN,
-					userEntity);
-		} else {
-			new WebCommonTask(this, this, null).execute(Connect.REGISTER,
-					userEntity);
-		}
+		new WebCommonTask(this, this, null).execute(Connect.LOGIN, userEntity);
 	}
 
 	@Override
@@ -110,22 +93,10 @@ public class MainActivity extends BaseActivity implements ConnectListener {
 
 	@Override
 	public void Succes(final Connect connect, final Object object) {
-		switch (connect) {
-		case LOGIN:
-			MyApplication.userEntity = JSONObject.parseObject(
-					object.toString(), UserEntity.class);
-			jumpActivity(ControllActivity.class);
-			finish();
-			break;
-		case REGISTER:
-			((RadioButton) findViewById(R.id.btn_log)).setChecked(true);
-			showMsg("注册成功");
-			userEntity.setMothed("login");
-			btnLogin.setText("登录");
-			break;
-		default:
-			break;
-		}
+		MyApplication.userEntity = JSONObject.parseObject(object.toString(),
+				UserEntity.class);
+		jumpActivity(ControllActivity.class);
+		finish();
 	}
 
 	@Override

@@ -1,11 +1,11 @@
-package com.lf.activity;
+package com.lf.fragment;
 
 import java.util.List;
 
-import org.w3c.dom.Comment;
-
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.alibaba.fastjson.JSONObject;
@@ -24,33 +24,36 @@ import com.lf.web.WebCommonTask;
  * @author wzg
  * 
  */
-public class MessageActivity extends BaseActivity implements ConnectListener {
+public class FriendFragment extends BaseFragment implements ConnectListener {
 	private BaseConnectEntity mEntity;
 	private MessageAdapter adapter;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		super.init(R.layout.activity_message);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.activity_message, container,
+				false);
+		super.init(view);
+		return view;
 	}
 
 	@Override
-	protected void initResource() {
+	protected void initResource(View view) {
 		mEntity = new BaseConnectEntity();
 		mEntity.setMothed("getAllMeesage");
-		adapter = new MessageAdapter(this);
+		adapter = new MessageAdapter(getActivity());
 	}
 
 	@Override
-	protected void initWidget() {
-		ListView lt = (ListView) findViewById(R.id.ltview);
+	protected void initWidget(View view) {
+		ListView lt = (ListView) view.findViewById(R.id.ltview);
 		lt.setAdapter(adapter);
 	}
 
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		super.onResume();
-		new WebCommonTask(this, this, "loading....").execute(
+		new WebCommonTask(getActivity(), this, "loading....").execute(
 				Connect.GET_ALL_MSG, mEntity);
 	}
 
@@ -71,21 +74,6 @@ public class MessageActivity extends BaseActivity implements ConnectListener {
 	@Override
 	public void Failed(String message) {
 		showMsg(message);
-	}
-
-	@Override
-	public void onClick(View v) {
-		super.onClick(v);
-		switch (v.getId()) {
-		case R.id.btn_send:
-			jumpActivity(SendMessageActivity.class);
-			break;
-		case R.id.btn_back:
-			finish();
-			break;
-		default:
-			break;
-		}
 	}
 
 }

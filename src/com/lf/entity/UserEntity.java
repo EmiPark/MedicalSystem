@@ -49,6 +49,18 @@ public class UserEntity extends BaseConnectEntity {
 	 * 性别1boy 2girl
 	 */
 	private String sex;
+	/**
+	 * 头像
+	 */
+	private String photo;
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 
 	public String getNameS() {
 		return nameS;

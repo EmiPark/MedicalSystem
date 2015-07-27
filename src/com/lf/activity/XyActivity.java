@@ -1,16 +1,16 @@
 package com.lf.activity;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
 import com.bysj.zzx.R;
 import com.lf.dialog.TimeDialog;
 import com.lf.entity.ChangeEntity;
 import com.lf.web.Global.Connect;
 import com.lf.web.Global.ConnectListener;
 import com.lf.web.WebCommonTask;
-
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 
 /**
  * 记录血压界面

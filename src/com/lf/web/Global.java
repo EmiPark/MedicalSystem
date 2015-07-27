@@ -1,5 +1,6 @@
 package com.lf.web;
 
+
 /**
  * 网络交互工具类
  * 
@@ -9,6 +10,8 @@ package com.lf.web;
 public class Global {
 	// 服务器链接地址，其中ip地址是电脑中ip地址随机分配的所以链接之前需要查看本机中ip
 	public static String SERVICE_URL = "http://172.20.10.4:8080/GraduationServer/services/GraduationServerWS";
+	public static String Photo_URL = "http://172.20.10.4:8080/GraduationServer/services/upload/";
+	
 
 	// 请求标识
 	public static enum Connect {

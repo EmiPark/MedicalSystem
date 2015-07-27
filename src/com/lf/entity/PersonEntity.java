@@ -29,6 +29,7 @@ public class PersonEntity extends BaseConnectEntity {
 	 * 血型
 	 */
 	private String xx;
+
 	/**
 	 * 电话
 	 */
@@ -41,10 +42,19 @@ public class PersonEntity extends BaseConnectEntity {
 	 * 性别
 	 */
 	private String sex;
-	
-	public PersonEntity(){
-		setMothed("updatePerson");
-	}
+	/**
+	 * 用户名
+	 */
+	private String userName;
+	/**
+	 * 密码
+	 */
+	private String psd;
+	/**
+	 * 头像
+	 */
+	private PhotoEntity photo;
+
 
 	@Override
 	public LinkedHashMap<String, Object> getMap() {
@@ -58,6 +68,30 @@ public class PersonEntity extends BaseConnectEntity {
 		map.put("sex", sex);
 		map.put("tel", tel);
 		return map;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPsd() {
+		return psd;
+	}
+
+	public void setPsd(String psd) {
+		this.psd = psd;
+	}
+
+	public PhotoEntity getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(PhotoEntity photo) {
+		this.photo = photo;
 	}
 
 	public int getId() {

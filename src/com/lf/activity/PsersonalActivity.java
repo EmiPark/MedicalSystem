@@ -1,15 +1,27 @@
 package com.lf.activity;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.hardware.Camera.CameraInfo;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
+import com.alibaba.fastjson.JSONObject;
 import com.bysj.zzx.R;
+import com.lf.common.AsyncImageLoader;
 import com.lf.common.MyApplication;
+import com.lf.common.RoundImage;
 import com.lf.dialog.TimeDialog;
 import com.lf.entity.PersonEntity;
+import com.lf.entity.PhotoEntity;
 import com.lf.entity.UserEntity;
+import com.lf.web.Global;
 import com.lf.web.Global.Connect;
 import com.lf.web.Global.ConnectListener;
 import com.lf.web.WebCommonTask;
@@ -22,16 +34,23 @@ import com.lf.web.WebCommonTask;
  */
 public class PsersonalActivity extends BaseActivity implements ConnectListener {
 	// 姓名；年龄；身高；电话；地址；血型
-	private EditText etvName, etvAge, etvHigh, etvTel, etvAds, etvXx;
-	private String name, age, high, tel, ads, xx, sex;
+	private EditText etvName, etvAge, etvHigh, etvTel, etvAds, etvXx,
+			etvUerName, etvPsd;
+	private String name, age, high, tel, ads, xx, sex, userName, psd;
+	private RoundImage imgPhoto;
+	private Bitmap bitmap;
 	// 男按钮,女
 	private RadioButton rbtB, rbtG;
 	// 个人信息类
 	private PersonEntity pEntity;
-	// 是否存在历史记录
-	private boolean isExit;
 	// 当前用户
 	private UserEntity entity;
+	// 注册
+	private boolean resign;
+	// 调用相机
+	private final int CAMERA = 1;
+	private Connect connect;
+	AsyncImageLoader loader;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,18 +61,25 @@ public class PsersonalActivity extends BaseActivity implements ConnectListener {
 	@Override
 	protected void initResource() {
 		pEntity = new PersonEntity();
-		entity = MyApplication.userEntity;
 		pEntity.setId(entity.getId());
-		if (null == MyApplication.userEntity.getNameS()) {
-			isExit = false;
+		loader = AsyncImageLoader.getAsyncImageLoader(this);
+		resign = getIntent().getExtras().getBoolean("type");
+		if (resign) {
+			connect = Connect.REGISTER;
+			pEntity.setMothed("register");
 		} else {
-			isExit = true;
+			connect = Connect.UPDATE_PERSON;
+			pEntity.setMothed("updatePerson");
+			entity = MyApplication.userEntity;
 		}
 	}
 
 	@Override
 	protected void initWidget() {
 		etvName = (EditText) findViewById(R.id.etv_name);
+		etvUerName = (EditText) findViewById(R.id.etv_user_name);
+		imgPhoto = (RoundImage) findViewById(R.id.img_hoto);
+		etvPsd = (EditText) findViewById(R.id.etv_psd);
 		etvAge = (EditText) findViewById(R.id.etv_age);
 		etvHigh = (EditText) findViewById(R.id.etv_high);
 		etvTel = (EditText) findViewById(R.id.etv_tel);
@@ -61,8 +87,19 @@ public class PsersonalActivity extends BaseActivity implements ConnectListener {
 		etvXx = (EditText) findViewById(R.id.etv_xx);
 		rbtB = (RadioButton) findViewById(R.id.rbtn_b);
 		rbtG = (RadioButton) findViewById(R.id.rbtn_g);
+		Button btn = (Button) findViewById(R.id.btn_ok);
 
-		if (isExit) {
+		if (resign) {
+			bitmap = BitmapFactory.decodeResource(getResources(),
+					R.drawable.btn_l_r_boy);
+			imgPhoto.setImageBitmap(bitmap);
+			btn.setText("注册");
+		} else {
+			btn.setText("修改");
+			String url = Global.Photo_URL + entity.getPhoto();
+			loader.loadDrawable(url, imgPhoto);
+			etvUerName.setText(entity.getName());
+			etvPsd.setText(entity.getPassword());
 			etvName.setText(entity.getNameS());
 			etvAds.setText(entity.getAds());
 			etvAge.setText(entity.getAge());
@@ -87,8 +124,33 @@ public class PsersonalActivity extends BaseActivity implements ConnectListener {
 		case R.id.btn_ok:
 			determinalDo();
 			break;
+		case R.id.img_hoto:
+			setPhotoByCamera();
+			break;
 		default:
 			break;
+		}
+	}
+
+	/**
+	 * 调用相机拍照
+	 */
+	private void setPhotoByCamera() {
+		Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		camera.putExtra("camerasensortype", CameraInfo.CAMERA_FACING_FRONT);
+		startActivityForResult(camera, CAMERA);
+	}
+
+	/**
+	 * 选择图片结束后，回调方法
+	 */
+	protected void onActivityResult(int requestCode, int resultCode,
+			android.content.Intent data) {
+		if (requestCode == CAMERA && resultCode == Activity.RESULT_OK
+				&& null != data) {
+			// 获取相机返回的数据，并转换为图片格式
+			bitmap = data.getParcelableExtra("data");
+			imgPhoto.setImageBitmap(bitmap);
 		}
 	}
 
@@ -103,8 +165,11 @@ public class PsersonalActivity extends BaseActivity implements ConnectListener {
 		ads = etvAds.getText().toString().trim();
 		xx = etvXx.getText().toString().trim();
 		sex = rbtB.isChecked() ? "1" : "2";
+		userName = etvUerName.getText().toString().trim();
+		psd = etvPsd.getText().toString().trim();
 		if ("".equals(name) || "".equals(age) || "".equals(high)
-				|| "".equals(tel) || "".equals(ads) || "".equals(xx)) {
+				|| "".equals(tel) || "".equals(ads) || "".equals(xx)
+				|| "".equals(userName) || "".equals(psd)) {
 			showMsg(R.string.simple);
 			return;
 		}
@@ -115,21 +180,38 @@ public class PsersonalActivity extends BaseActivity implements ConnectListener {
 		pEntity.setXx(xx);
 		pEntity.setSex(sex);
 		pEntity.setHigh(high);
-		new WebCommonTask(this, this, null).execute(Connect.UPDATE_PERSON,
-				pEntity);
+		pEntity.setUserName(userName);
+		pEntity.setPsd(psd);
+		if (bitmap != null) {
+			pEntity.setPhoto(new PhotoEntity(bitmap));
+		}
+		new WebCommonTask(this, this, null).execute(connect, pEntity);
 	}
 
 	@Override
 	public void Succes(Connect connect, Object object) {
-		entity.setNameS(name);
-		entity.setTel(tel);
-		entity.setAge(age);
-		entity.setAds(ads);
-		entity.setXx(xx);
-		entity.setSex(sex);
-		entity.setHigh(high);
-		showMsg("修改成功");
-		finish();
+		switch (connect) {
+		case UPDATE_PERSON:
+			UserEntity userEntity = new UserEntity();
+			userEntity.setMothed("login");
+			userEntity.setName(userName);
+			userEntity.setPassword(psd);
+			new WebCommonTask(this, this, null).execute(Connect.LOGIN,
+					userEntity);
+			break;
+		case REGISTER:
+			showMsg("注册成功");
+			finish();
+			break;
+		case LOGIN:
+			MyApplication.userEntity = JSONObject.parseObject(
+					object.toString(), UserEntity.class);
+			showMsg("修改成功");
+			finish();
+			break;
+		default:
+			break;
+		}
 	}
 
 	@Override
