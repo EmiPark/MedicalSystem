@@ -49,15 +49,15 @@ public class ContentBtnAdapter extends BaseAdapter {
 		ltClasses.add(TwActivity.class);
 
 		ltData.add("心跳");
-		ltDataSrc.add(R.drawable.bg_tw);
+		ltDataSrc.add(R.drawable.bg_xt);
 		ltClasses.add(XtActivity.class);
 
 		ltData.add("血压");
-		ltDataSrc.add(R.drawable.bg_tw);
+		ltDataSrc.add(R.drawable.bg_xy);
 		ltClasses.add(XyActivity.class);
 
 		ltData.add("呼吸");
-		ltDataSrc.add(R.drawable.bg_tw);
+		ltDataSrc.add(R.drawable.bg_hx);
 		ltClasses.add(HxActivity.class);
 
 		ltData.add("体重");
@@ -65,19 +65,19 @@ public class ContentBtnAdapter extends BaseAdapter {
 		ltClasses.add(TzActivity.class);
 
 		ltData.add("锻炼");
-		ltDataSrc.add(R.drawable.bg_tw);
+		ltDataSrc.add(R.drawable.bg_tz);
 		ltClasses.add(DlActivity.class);
 
 		ltData.add("用药");
-		ltDataSrc.add(R.drawable.bg_tw);
+		ltDataSrc.add(R.drawable.bg_yy);
 		ltClasses.add(CyActivity.class);
 
 		ltData.add("病史");
-		ltDataSrc.add(R.drawable.bg_tw);
+		ltDataSrc.add(R.drawable.bg_bs);
 		ltClasses.add(BsActivity.class);
 
 		ltData.add("饮食");
-		ltDataSrc.add(R.drawable.bg_tw);
+		ltDataSrc.add(R.drawable.bg_ys);
 		ltClasses.add(CfActivity.class);
 		this.context = context;
 	}
@@ -188,8 +188,6 @@ public class ContentBtnAdapter extends BaseAdapter {
 			intent.putExtras(bundle);
 			context.startActivity(intent);
 		}
-		
-
 	}
 
 }
