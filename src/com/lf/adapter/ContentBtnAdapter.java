@@ -154,7 +154,7 @@ public class ContentBtnAdapter extends BaseAdapter {
 			case R.id.btn_history:
 				Bundle bundle = new Bundle();
 				bundle.putInt("type", postion+1);
-				if (postion < 4) {
+				if (postion <= 4) {
 					jumpActivity(LineChartActivity.class, bundle);
 				} else {
 					jumpActivity(NormalHistoryActivity.class, bundle);

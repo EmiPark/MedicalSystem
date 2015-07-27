@@ -1,45 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rgoup"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#00000000"
+    android:gravity="center_horizontal"
     android:orientation="horizontal" >
 
     <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="5dp"
+        android:layout_height="5dp"
         android:background="@drawable/rbtn_intreduce"
         android:button="@null"
         android:enabled="false" />
 
     <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="5dp"
+        android:layout_height="5dp"
         android:layout_marginLeft="10dp"
         android:background="@drawable/rbtn_intreduce"
         android:button="@null"
         android:enabled="false" />
 
     <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="5dp"
+        android:layout_height="5dp"
         android:layout_marginLeft="10dp"
         android:background="@drawable/rbtn_intreduce"
         android:button="@null"
         android:enabled="false" />
 
     <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="5dp"
+        android:layout_height="5dp"
         android:layout_marginLeft="10dp"
         android:background="@drawable/rbtn_intreduce"
         android:button="@null"
         android:enabled="false" />
 
     <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="5dp"
+        android:layout_height="5dp"
         android:layout_marginLeft="10dp"
         android:background="@drawable/rbtn_intreduce"
         android:button="@null"

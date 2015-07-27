@@ -1,5 +1,8 @@
 package com.lf.activity;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -7,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.hardware.Camera.CameraInfo;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +25,8 @@ import com.lf.common.RoundImage;
 import com.lf.dialog.TimeDialog;
 import com.lf.entity.PersonEntity;
 import com.lf.entity.PhotoEntity;
+import com.lf.entity.SendPhotoEntity;
+import com.lf.entity.UpdatePersonEntity;
 import com.lf.entity.UserEntity;
 import com.lf.web.Global;
 import com.lf.web.Global.Connect;
@@ -52,6 +58,8 @@ public class PsersonalActivity extends BaseActivity implements ConnectListener {
 	private final int CAMERA = 1;
 	private Connect connect;
 	private AsyncImageLoader loader;
+	// 跟新用户信息
+	private UpdatePersonEntity uPersonEntity;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,13 +70,14 @@ public class PsersonalActivity extends BaseActivity implements ConnectListener {
 	@Override
 	protected void initResource() {
 		pEntity = new PersonEntity();
-		pEntity.setId(entity.getId());
 		loader = AsyncImageLoader.getAsyncImageLoader(this);
 		resign = getIntent().getExtras().getBoolean("type");
 		if (resign) {
 			connect = Connect.REGISTER;
 			pEntity.setMothed("register");
 		} else {
+			entity = MyApplication.userEntity;
+			pEntity.setId(entity.getId());
 			connect = Connect.UPDATE_PERSON;
 			pEntity.setMothed("updatePerson");
 			entity = MyApplication.userEntity;
@@ -185,13 +194,26 @@ public class PsersonalActivity extends BaseActivity implements ConnectListener {
 		pEntity.setHigh(high);
 		pEntity.setUserName(userName);
 		pEntity.setPsd(psd);
-		pEntity.setPhoto(new PhotoEntity(bitmap));
-		new WebCommonTask(this, this, null).execute(connect, pEntity);
+		SendPhotoEntity sEntity = new SendPhotoEntity(new PhotoEntity(bitmap));
+		new WebCommonTask(this, this, "上传中。。。。。").execute(Connect.SEND_PHOTO,
+				sEntity);
 	}
 
 	@Override
 	public void Succes(Connect connect, Object object) {
 		switch (connect) {
+		case SEND_PHOTO:
+			Log.e("tag", "--->" + object.toString());
+			pEntity.setPhoto(object.toString());
+			if (this.connect == Connect.REGISTER) {
+				new WebCommonTask(this, this, "上传中。。。。。").execute(this.connect,
+						pEntity);
+			} else {
+				uPersonEntity = new UpdatePersonEntity(pEntity);
+				new WebCommonTask(this, this, "上传中。。。。。").execute(this.connect,
+						uPersonEntity);
+			}
+			break;
 		case UPDATE_PERSON:
 			UserEntity userEntity = new UserEntity();
 			userEntity.setMothed("login");

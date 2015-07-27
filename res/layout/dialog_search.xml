@@ -11,9 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/green"
-        >
-        
-        
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp" >
+
         <Button
             android:id="@+id/btn_back"
             android:layout_width="wrap_content"
@@ -23,8 +23,7 @@
             android:background="@color/bg_no"
             android:onClick="onClick"
             android:text="&lt;返回"
-            android:textColor="@color/whilte"
-           />
+            android:textColor="@color/whilte" />
 
         <TextView
             android:id="@+id/tv_name"
@@ -34,7 +33,7 @@
             android:layout_centerVertical="true"
             android:text="疾病"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textStyle="bold" />
     </RelativeLayout>
 
@@ -70,7 +69,7 @@
             android:singleLine="true"
             android:text="这是一种病，简单介绍"
             android:textColor="@color/black" />
-        
+
         <TextView
             android:id="@+id/tv_zl"
             android:layout_width="match_parent"
@@ -83,8 +82,8 @@
             android:singleLine="true"
             android:text="治疗方法"
             android:textColor="@color/black" />
-        
-          <TextView
+
+        <TextView
             android:id="@+id/tv_jc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

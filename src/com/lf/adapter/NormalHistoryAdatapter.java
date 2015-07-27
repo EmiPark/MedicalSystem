@@ -76,7 +76,7 @@ public class NormalHistoryAdatapter extends BaseAdapter {
 		} else {
 			holder.tvRemark.setText(state);
 		}
-		holder.tvFirst.setText("名：" + entity.getNumber());
+		holder.tvFirst.setText(entity.getNumber());
 		holder.tvTime.setText("时间：" + entity.getTime());
 
 		return convertView;

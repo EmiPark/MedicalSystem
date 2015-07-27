@@ -1,9 +1,12 @@
 package com.lf.activity;
 
+import org.w3c.dom.Text;
+
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
@@ -44,6 +47,7 @@ public class MainActivity extends BaseActivity implements ConnectListener {
 	protected void initWidget() {
 		etvName = (EditText) findViewById(R.id.etv_name);
 		etvPsd = (EditText) findViewById(R.id.etv_password);
+		((TextView)findViewById(R.id.tv_register)).setOnClickListener(this);
 	}
 
 	// @Override登陆和注册监听

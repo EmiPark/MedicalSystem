@@ -9,14 +9,14 @@
         android:id="@+id/catalog"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="#E0E0E0"
-        android:textColor="#454545"
         android:layout_weight="1.0"
+        android:background="#DBD1CC"
+        android:paddingBottom="5dip"
         android:paddingLeft="5dip"
         android:paddingTop="5dip"
-        android:paddingBottom="5dip"
-        android:textSize="26sp"
-        android:text="A"/>
+        android:text="A"
+        android:textColor="#454545"
+        android:textSize="22sp" />
 
     <TextView
         android:id="@+id/title"
@@ -28,7 +28,7 @@
         android:paddingBottom="10dip"
         android:paddingTop="10dip"
         android:text="hhhh"
-        android:textColor="#336598"
-        android:textSize="20sp" />
+        android:textColor="@color/black"
+        android:textSize="18sp" />
 
 </LinearLayout>

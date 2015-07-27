@@ -5,11 +5,11 @@ import java.io.IOException;
 
 import android.graphics.Bitmap;
 /**
- * 头像图片
- * @author wzg
+ * 图片封装类
+ * @author iceman
  *
  */
-public class PhotoEntity {
+public class PhotoEntity extends BaseConnectEntity {
 
 	private byte[] photo;
 
@@ -31,7 +31,7 @@ public class PhotoEntity {
 	 * @param bitmap
 	 * @return
 	 */
-	private byte[] getBitmapByte(Bitmap bitmap) {
+	protected byte[] getBitmapByte(Bitmap bitmap) {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
 		try {
@@ -42,4 +42,5 @@ public class PhotoEntity {
 		}
 		return out.toByteArray();
 	}
+
 }

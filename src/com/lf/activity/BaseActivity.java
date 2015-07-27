@@ -34,10 +34,10 @@ public abstract class BaseActivity extends Activity implements OnClickListener {
 	 * 初始化
 	 */
 	protected void init(int layout) {
+		setContentView(layout);
+		initResource();
+		initWidget();
 		try {
-			setContentView(layout);
-			initResource();
-			initWidget();
 		} catch (Exception e) {
 			Log.e(TAG, e.toString());
 		}

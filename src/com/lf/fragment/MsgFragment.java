@@ -10,6 +10,8 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -93,6 +95,8 @@ public class MsgFragment extends BaseFragment implements ConnectListener,
 			List<View> ltViews = new ArrayList<View>();
 			for (IntreduceEntity entity : list2) {
 				ImageView imageView = new ImageView(getActivity());
+				imageView.setLayoutParams(new LayoutParams(
+						LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 				loader.loadDrawable(entity.getUrl(), imageView);
 				ltViews.add(imageView);
 			}

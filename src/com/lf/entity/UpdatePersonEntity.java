@@ -2,13 +2,15 @@ package com.lf.entity;
 
 import java.util.LinkedHashMap;
 
+import com.lf.common.MyApplication;
+
 /**
  * 用户信息保存类
  * 
  * @author
  * 
  */
-public class PersonEntity extends BaseConnectEntity {
+public class UpdatePersonEntity extends BaseConnectEntity {
 	/**
 	 * id
 	 */
@@ -55,13 +57,25 @@ public class PersonEntity extends BaseConnectEntity {
 	 */
 	private String photo;
 
+	public UpdatePersonEntity(PersonEntity entity) {
+		setMothed("updatePerson");
+		setId(MyApplication.userEntity.getId());
+		setName(entity.getName());
+		setAge(entity.getAge());
+		setHigh(entity.getHigh());
+		setXx(entity.getXx());
+		setTel(entity.getTel());
+		setAds(entity.getAds());
+		setSex(entity.getSex());
+		setUserName(entity.getUserName());
+		setPsd(entity.getPsd());
+		setPhoto(entity.getPhoto());
+	}
+
 	@Override
 	public LinkedHashMap<String, Object> getMap() {
 		LinkedHashMap<String, Object> map = new LinkedHashMap<String, Object>();
-//		map.put("id", id);
-		map.put("name", userName);
-		map.put("password", psd);
-		map.put("photo", photo);
+		map.put("id", id);
 		map.put("nameS", name);
 		map.put("age", age);
 		map.put("high", high);
@@ -69,6 +83,9 @@ public class PersonEntity extends BaseConnectEntity {
 		map.put("tel", tel);
 		map.put("ads", ads);
 		map.put("sex", sex);
+		map.put("name", userName);
+		map.put("password", psd);
+		map.put("photo", photo);
 		return map;
 	}
 

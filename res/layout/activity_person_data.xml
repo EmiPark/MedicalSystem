@@ -38,6 +38,14 @@
             android:textStyle="bold" />
     </RelativeLayout>
 
+    <com.lf.common.RoundImage
+        android:id="@+id/img_hoto"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:onClick="onClick" />
+
     <ScrollView
         android:id="@+id/llyout_content"
         android:layout_width="match_parent"
@@ -50,14 +58,6 @@
             android:layout_marginTop="15dp"
             android:background="@color/white"
             android:orientation="vertical" >
-
-            <com.lf.common.RoundImage
-                android:id="@+id/img_hoto"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:onClick="onClick" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -245,6 +245,7 @@
                     android:layout_marginLeft="20dp"
                     android:background="@color/white"
                     android:gravity="center_vertical"
+                    android:inputType="number"
                     android:padding="5dp"
                     android:singleLine="true"
                     android:textColor="@color/black" />
@@ -316,23 +317,17 @@
                 </RadioGroup>
             </LinearLayout>
 
-            <LinearLayout
+            <Button
+                android:id="@+id/btn_ok"
+                style="@style/btn_grren"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp"
-                android:orientation="horizontal" >
-
-                <Button
-                    android:id="@+id/btn_ok"
-                    style="@style/btn_grren"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_weight="1"
-                    android:onClick="onClick"
-                    android:text="确认" />
-            </LinearLayout>
+                android:onClick="onClick"
+                android:text="确认" />
         </LinearLayout>
     </ScrollView>
 

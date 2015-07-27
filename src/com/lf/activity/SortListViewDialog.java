@@ -12,8 +12,10 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,7 +41,7 @@ import com.lf.web.WebCommonTask;
  * 
  */
 public class SortListViewDialog extends Dialog implements ConnectListener,
-		OnItemClickListener {
+		OnItemClickListener ,OnClickListener{
 	private Context context;
 	private ListView ltWords;
 	private SortAdapter adapter;
@@ -108,6 +110,8 @@ public class SortListViewDialog extends Dialog implements ConnectListener,
 			public void afterTextChanged(Editable s) {
 			}
 		});
+		
+		((Button)findViewById(R.id.btn_back)).setOnClickListener(this);
 	}
 
 	/**
@@ -157,5 +161,10 @@ public class SortListViewDialog extends Dialog implements ConnectListener,
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
 		new SerachDialog(context, listData.get(position)).show();
+	}
+
+	@Override
+	public void onClick(View v) {
+		dismiss();
 	}
 }
