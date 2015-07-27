@@ -3,16 +3,16 @@ package com.lf.adapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bysj.zzx.R;
-import com.lf.common.AsyncImageLoader;
-import com.lf.entity.MsgEntity;
-
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bysj.zzx.R;
+import com.lf.common.AsyncImageLoader;
+import com.lf.common.RoundAngleImageView;
+import com.lf.entity.MsgEntity;
 
 /**
  * 资讯封装类
@@ -63,7 +63,7 @@ public class MsgAdatapter extends BaseAdapter {
 		if (convertView == null) {
 			holder = new Viewholder();
 			convertView = View.inflate(context, R.layout.rlyout_msg_item, null);
-			holder.img = (ImageView) convertView.findViewById(R.id.img);
+			holder.img = (RoundAngleImageView) convertView.findViewById(R.id.img);
 			holder.tv = (TextView) convertView.findViewById(R.id.tv_intreduce);
 			convertView.setTag(holder);
 		} else {
@@ -80,7 +80,7 @@ public class MsgAdatapter extends BaseAdapter {
 	}
 
 	private class Viewholder {
-		private ImageView img;
+		private RoundAngleImageView img;
 		private TextView tv;
 	}
 

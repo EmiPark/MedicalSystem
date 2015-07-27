@@ -3,10 +3,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+    <RelativeLayout
+        android:id="@+id/rlyout_intreduce"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp" >
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_intreduce"
+            android:layout_width="match_parent"
+            android:layout_height="150dp" >
+        </android.support.v4.view.ViewPager>
+
+        <include
+            android:layout_width="wrap_content"
+            android:layout_height="4dp"
+            android:layout_alignBottom="@id/vp_intreduce"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            layout="@layout/rgroup_item" />
+    </RelativeLayout>
+
     <ListView
         android:id="@+id/lt"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/rlyout_intreduce"
         android:paddingLeft="10dp"
         android:paddingRight="10dp" >
     </ListView>

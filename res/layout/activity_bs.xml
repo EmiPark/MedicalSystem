@@ -42,9 +42,9 @@
             android:id="@+id/btn_history"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:onClick="onClick"
             android:layout_alignParentRight="true"
-            android:background="@drawable/pocket_icon_clock2x" />
+            android:background="@drawable/pocket_icon_clock2x"
+            android:onClick="onClick" />
     </RelativeLayout>
 
     <ImageView
