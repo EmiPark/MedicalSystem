@@ -172,7 +172,5 @@ http://www.2cto.com/kf/201402/280719.html
 
 10.弹出文字信息：
 	Toast.makeText(context, “信息”, Toast.LENGTH_LONG).show();
-	
-	註冊，修改信息，搜索，下載介紹
 
 	

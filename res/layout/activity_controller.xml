@@ -60,69 +60,64 @@
         <RadioGroup
             android:id="@+id/rg"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:layout_alignParentBottom="true"
             android:layout_weight="3"
             android:orientation="horizontal" >
 
             <RadioButton
                 android:id="@+id/rbtn_health"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/zhuce"
+                android:background="@drawable/rbtn_jk"
                 android:button="@null"
                 android:checked="true"
                 android:gravity="center"
                 android:onClick="onClick"
                 android:padding="10dp"
-                android:text="健康"
                 android:textColor="@color/whilte"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
             <RadioButton
                 android:id="@+id/rbtn_knownadge"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/zhuce"
+                android:background="@drawable/rbtn_zs"
                 android:button="@null"
                 android:gravity="center"
                 android:onClick="onClick"
                 android:padding="10dp"
-                android:text="知识"
                 android:textColor="@color/whilte"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
             <RadioButton
                 android:id="@+id/rbtn_tj"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/zhuce"
+                android:background="@drawable/rbtn_zx"
                 android:button="@null"
                 android:gravity="center"
                 android:onClick="onClick"
                 android:padding="10dp"
-                android:text="资讯"
                 android:textColor="@color/whilte"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
             <RadioButton
                 android:id="@+id/friend"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/zhuce"
+                android:background="@drawable/rbtn_jl"
                 android:button="@null"
-                android:checked="true"
                 android:gravity="center"
                 android:onClick="onClick"
                 android:padding="10dp"
-                android:text="信息"
                 android:textColor="@color/whilte"
                 android:textSize="22sp"
                 android:textStyle="bold" />

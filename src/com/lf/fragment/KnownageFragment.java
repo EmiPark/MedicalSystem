@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.alibaba.fastjson.JSONObject;
 import com.bysj.zzx.R;
@@ -56,7 +56,8 @@ public class KnownageFragment extends BaseFragment implements ConnectListener {
 	@Override
 	protected void initWidget(View view) {
 		etvSearch = (EditText) view.findViewById(R.id.etv_search);
-		((Button) view.findViewById(R.id.btn_search)).setOnClickListener(this);
+		((RelativeLayout) view.findViewById(R.id.rlyout_search))
+				.setOnClickListener(this);
 		ListView lView = (ListView) view.findViewById(R.id.lt);
 		lView.setAdapter(adatapter);
 	}
@@ -64,7 +65,7 @@ public class KnownageFragment extends BaseFragment implements ConnectListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.btn_search:
+		case R.id.rlyout_search:
 			// searchDo();
 			new SortListViewDialog(getActivity()).show();
 			break;

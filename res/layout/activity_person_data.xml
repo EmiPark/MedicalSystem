@@ -53,8 +53,8 @@
 
             <com.lf.common.RoundImage
                 android:id="@+id/img_hoto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 android:onClick="onClick" />

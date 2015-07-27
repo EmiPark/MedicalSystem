@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.bysj.zzx.R;
@@ -50,7 +51,7 @@ public class PsersonalActivity extends BaseActivity implements ConnectListener {
 	// 调用相机
 	private final int CAMERA = 1;
 	private Connect connect;
-	AsyncImageLoader loader;
+	private AsyncImageLoader loader;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -88,16 +89,18 @@ public class PsersonalActivity extends BaseActivity implements ConnectListener {
 		rbtB = (RadioButton) findViewById(R.id.rbtn_b);
 		rbtG = (RadioButton) findViewById(R.id.rbtn_g);
 		Button btn = (Button) findViewById(R.id.btn_ok);
+		TextView tvTitle = (TextView) findViewById(R.id.tv_title);
 
 		if (resign) {
 			bitmap = BitmapFactory.decodeResource(getResources(),
 					R.drawable.btn_l_r_boy);
 			imgPhoto.setImageBitmap(bitmap);
 			btn.setText("注册");
+			tvTitle.setText("注册");
 		} else {
 			btn.setText("修改");
 			String url = Global.Photo_URL + entity.getPhoto();
-			loader.loadDrawable(url, imgPhoto);
+			loader.loadDrawable(url, imgPhoto, bitmap);
 			etvUerName.setText(entity.getName());
 			etvPsd.setText(entity.getPassword());
 			etvName.setText(entity.getNameS());
@@ -182,9 +185,7 @@ public class PsersonalActivity extends BaseActivity implements ConnectListener {
 		pEntity.setHigh(high);
 		pEntity.setUserName(userName);
 		pEntity.setPsd(psd);
-		if (bitmap != null) {
-			pEntity.setPhoto(new PhotoEntity(bitmap));
-		}
+		pEntity.setPhoto(new PhotoEntity(bitmap));
 		new WebCommonTask(this, this, null).execute(connect, pEntity);
 	}
 

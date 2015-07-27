@@ -112,6 +112,32 @@ public class AsyncImageLoader {
 			Log.e("tag", "网络获取图片");
 		}
 	}
+	
+	/**
+	 * 给imgview添加图片
+	 * 
+	 * @param imgEntity
+	 * @param imageView
+	 */
+	public void loadDrawable(String url, final ImageView imageView,Bitmap bitmapTemp) {
+		if (url == null || "".equals(url)) {
+			return;
+		}
+		ImgEntity imgEntity = new ImgEntity();
+		imgEntity.setUrl(url);
+		imgEntity.setSaveState(2);
+		Bitmap bitmap = getLocalDrawable(imgEntity);
+		bitmapTemp=bitmap;
+		if (bitmap != null) {
+			imageView.setImageBitmap(bitmap);
+		} else {
+			// 添加等待图片
+//			imageView.setImageBitmap(new BitmapFactory().decodeResource(
+//					context.getResources(), R.drawable.bg_welcom));
+			setImageDownlaod(imageView, imgEntity);
+			Log.e("tag", "网络获取图片");
+		}
+	}
 
 	/**
 	 * 取消正在下载的任务
