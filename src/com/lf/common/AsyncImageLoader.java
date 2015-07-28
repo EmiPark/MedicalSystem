@@ -18,7 +18,7 @@ import android.util.Log;
 import android.util.LruCache;
 import android.widget.ImageView;
 
-import com.bysj.zzx.R;
+import com.lf.web.Global;
 
 /**
  * 异步加载网络图片，实现硬软引用本地缓存机制。
@@ -93,47 +93,52 @@ public class AsyncImageLoader {
 	 * 
 	 * @param imgEntity
 	 * @param imageView
+	 * 
 	 */
 	public void loadDrawable(String url, final ImageView imageView) {
-		if (url == null || "".equals(url)) {
+		if (url == null || "".equals(url) || Global.Photo_URL.equals(url)) {
 			return;
 		}
 		ImgEntity imgEntity = new ImgEntity();
 		imgEntity.setUrl(url);
-		imgEntity.setSaveState(2);
+		imgEntity.setName("bysj");
+		imgEntity.setSaveState(5);
 		Bitmap bitmap = getLocalDrawable(imgEntity);
 		if (bitmap != null) {
 			imageView.setImageBitmap(bitmap);
 		} else {
 			// 添加等待图片
-//			imageView.setImageBitmap(new BitmapFactory().decodeResource(
-//					context.getResources(), R.drawable.bg_welcom));
+			// imageView.setImageBitmap(new BitmapFactory().decodeResource(
+			// context.getResources(), R.drawable.bg_welcom));
 			setImageDownlaod(imageView, imgEntity);
 			Log.e("tag", "网络获取图片");
 		}
 	}
-	
+
 	/**
-	 * 给imgview添加图片
+	 * 给imgview添加图片並且給bitmap賦值
 	 * 
 	 * @param imgEntity
 	 * @param imageView
+	 * @param bitmapTemp 
 	 */
-	public void loadDrawable(String url, final ImageView imageView,Bitmap bitmapTemp) {
+	public void loadDrawable(String url, final ImageView imageView,
+			Bitmap bitmapTemp) {
 		if (url == null || "".equals(url)) {
 			return;
 		}
 		ImgEntity imgEntity = new ImgEntity();
 		imgEntity.setUrl(url);
-		imgEntity.setSaveState(2);
+		imgEntity.setName("bysj");
+		imgEntity.setSaveState(5);
 		Bitmap bitmap = getLocalDrawable(imgEntity);
-		bitmapTemp=bitmap;
+		bitmapTemp = bitmap;
 		if (bitmap != null) {
 			imageView.setImageBitmap(bitmap);
 		} else {
 			// 添加等待图片
-//			imageView.setImageBitmap(new BitmapFactory().decodeResource(
-//					context.getResources(), R.drawable.bg_welcom));
+			// imageView.setImageBitmap(new BitmapFactory().decodeResource(
+			// context.getResources(), R.drawable.bg_welcom));
 			setImageDownlaod(imageView, imgEntity);
 			Log.e("tag", "网络获取图片");
 		}

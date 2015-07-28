@@ -2,6 +2,8 @@ package com.lf.entity;
 
 import java.util.LinkedHashMap;
 
+import com.lf.common.MyApplication;
+
 /**
  * 评论实体类
  * 
@@ -17,6 +19,8 @@ public class CommentEntity extends BaseConnectEntity {
 	private String name;
 	// 评论内容
 	private String message;
+//	头像
+	private String photo;
 
 	public CommentEntity() {
 		setMothed("comment");
@@ -28,7 +32,16 @@ public class CommentEntity extends BaseConnectEntity {
 		map.put("messageId", messageId);
 		map.put("name", name);
 		map.put("message", message);
+		map.put("photo", MyApplication.userEntity.getPhoto());
 		return map;
+	}
+	
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
 	public int getId() {

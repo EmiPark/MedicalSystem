@@ -1,14 +1,8 @@
 package com.lf.common;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
@@ -109,121 +103,5 @@ public class FileUtils {
 	public boolean isFileExists(String fileName) {
 		return new File(getStorageDirectory() + File.separator + fileName)
 				.exists();
-	}
-
-	/**
-	 * 获取文件的大小
-	 * 
-	 * @param fileName
-	 * @return
-	 */
-	public long getFileSize(String fileName) {
-		return new File(getStorageDirectory() + File.separator + fileName)
-				.length();
-	}
-
-	/**
-	 * 删除SD卡或者手机的缓存图片和目录
-	 */
-	public void deleteFile() {
-		File dirFile = new File(getStorageDirectory());
-		if (!dirFile.exists()) {
-			return;
-		}
-		if (dirFile.isDirectory()) {
-			String[] children = dirFile.list();
-			for (int i = 0; i < children.length; i++) {
-				new File(dirFile, children[i]).delete();
-			}
-		}
-
-		dirFile.delete();
-	}
-
-	/**
-	 * 写入字符串到制定的文件
-	 * 
-	 * @param log
-	 * @throws IOException
-	 */
-	public void savaLog(String log) throws IOException {
-		try {
-			File fp = new File(Environment.getExternalStorageDirectory()
-					+ "/TESTS/a.txt");
-			if (!fp.exists()) {
-				fp.createNewFile();
-			}
-			FileWriter fileWriter = new FileWriter(fp, true);
-			fileWriter.write(log);
-			fileWriter.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	/**
-	 * 以行为单位读取文件，读取给定路径的文件内容
-	 * 
-	 * @param fileName
-	 * @return
-	 */
-	public String readFileByLines(String fileName) {
-		File file = new File(fileName);
-		BufferedReader reader = null;
-		try {
-			System.out.println("以行为单位读取文件内容，一次读一整行：");
-			reader = new BufferedReader(new FileReader(file));
-			StringBuilder msg = new StringBuilder();
-			String content;
-			// 一次读入一行，直到读入null为文件结束
-			while ((content = reader.readLine()) != null) {
-				msg.append(content);
-			}
-			reader.close();
-			return msg.toString();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			if (reader != null) {
-				try {
-					reader.close();
-				} catch (IOException e1) {
-				}
-			}
-		}
-		return "";
-	}
-
-	/**
-	 * 文本的读取操作
-	 * 
-	 * @param path
-	 *            文件路径,一定要加上文件名字<br>
-	 *            例如：../a/a.txt
-	 * @return
-	 */
-	public static String read(InputStream is) {
-		BufferedReader bufr = null;
-		try {
-			bufr = new BufferedReader(new InputStreamReader(is));
-			StringBuffer sb = new StringBuffer();
-			String str = null;
-			while ((str = bufr.readLine()) != null) {
-				sb.append(str);
-			}
-			return sb.toString();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (bufr != null) {
-				try {
-					bufr.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return null;
 	}
 }

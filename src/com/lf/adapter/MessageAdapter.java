@@ -15,11 +15,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bysj.zzx.R;
+import com.lf.common.AsyncImageLoader;
 import com.lf.common.MyApplication;
+import com.lf.common.RoundImage;
 import com.lf.dialog.commentDialog;
 import com.lf.entity.CommentEntity;
 import com.lf.entity.DeleteMessageEntity;
 import com.lf.entity.MessageEntity;
+import com.lf.web.Global;
 import com.lf.web.Global.Connect;
 import com.lf.web.Global.ConnectListener;
 import com.lf.web.WebCommonTask;
@@ -37,10 +40,12 @@ public class MessageAdapter extends BaseAdapter implements ConnectListener {
 	private Context context;
 	// 当前点击位置
 	private int currentPosition = -1;
+	private AsyncImageLoader loader;
 
 	public MessageAdapter(Context context) {
 		ltData = new ArrayList<MessageEntity>();
 		this.context = context;
+		loader=AsyncImageLoader.getAsyncImageLoader(context);
 	}
 
 	/**
@@ -84,6 +89,8 @@ public class MessageAdapter extends BaseAdapter implements ConnectListener {
 					.findViewById(R.id.tv_comment);
 			holder.ltView = (LinearLayout) convertView
 					.findViewById(R.id.lt_comment);
+			holder.imagePhoto = (RoundImage) convertView
+					.findViewById(R.id.img_user);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
@@ -117,6 +124,7 @@ public class MessageAdapter extends BaseAdapter implements ConnectListener {
 		entity.setLlyout(holder.ltView);
 		holder.tvName.setText(entity.getName() + "  时间：" + entity.getTime());
 		holder.tvMessage.setText("说说：" + entity.getMessage());
+		loader.loadDrawable(Global.Photo_URL+entity.getPhoto(), holder.imagePhoto);
 		List<CommentEntity> mEntities = entity.getLtComment();
 		holder.ltView.removeAllViews();
 		for (CommentEntity entityC : mEntities) {
@@ -127,6 +135,8 @@ public class MessageAdapter extends BaseAdapter implements ConnectListener {
 			TextView tvMessage = (TextView) view.findViewById(R.id.tv_name);
 			// 设置评论人姓名（截取小部分）+评论
 			tvMessage.setText(entityC.getName() + ":" + entityC.getMessage());
+			RoundImage photoC=(RoundImage)view.findViewById(R.id.photo);
+			loader.loadDrawable(Global.Photo_URL+entityC.getPhoto(),  photoC);
 		}
 	}
 
@@ -201,6 +211,8 @@ public class MessageAdapter extends BaseAdapter implements ConnectListener {
 	 * 
 	 */
 	private class ViewHolder {
+		// 頭像
+		private RoundImage imagePhoto;
 		// 发布人名
 		private TextView tvName;
 		// 发布的说说
