@@ -194,9 +194,16 @@ public class PsersonalActivity extends BaseActivity implements ConnectListener {
 		pEntity.setHigh(high);
 		pEntity.setUserName(userName);
 		pEntity.setPsd(psd);
-		SendPhotoEntity sEntity = new SendPhotoEntity(new PhotoEntity(bitmap));
-		new WebCommonTask(this, this, "上传中。。。。。").execute(Connect.SEND_PHOTO,
-				sEntity);
+		if (bitmap == null) {
+			uPersonEntity = new UpdatePersonEntity(pEntity);
+			new WebCommonTask(this, this, "上传中。。。。。").execute(this.connect,
+					uPersonEntity);
+		} else {
+			SendPhotoEntity sEntity = new SendPhotoEntity(new PhotoEntity(
+					bitmap));
+			new WebCommonTask(this, this, "上传中。。。。。").execute(
+					Connect.SEND_PHOTO, sEntity);
+		}
 	}
 
 	@Override

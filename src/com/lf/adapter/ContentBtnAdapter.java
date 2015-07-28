@@ -71,14 +71,15 @@ public class ContentBtnAdapter extends BaseAdapter {
 		ltData.add("用药");
 		ltDataSrc.add(R.drawable.bg_yy);
 		ltClasses.add(CyActivity.class);
+		
+		ltData.add("饮食");
+		ltDataSrc.add(R.drawable.bg_ys);
+		ltClasses.add(CfActivity.class);
 
 		ltData.add("病史");
 		ltDataSrc.add(R.drawable.bg_bs);
 		ltClasses.add(BsActivity.class);
 
-		ltData.add("饮食");
-		ltDataSrc.add(R.drawable.bg_ys);
-		ltClasses.add(CfActivity.class);
 		this.context = context;
 	}
 

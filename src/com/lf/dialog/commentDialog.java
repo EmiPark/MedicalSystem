@@ -7,11 +7,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.bysj.zzx.R;
+import com.lf.common.AsyncImageLoader;
 import com.lf.common.MyApplication;
+import com.lf.common.RoundImage;
 import com.lf.entity.CommentEntity;
 import com.lf.entity.MessageEntity;
 import com.lf.web.Global.Connect;
 import com.lf.web.Global.ConnectListener;
+import com.lf.web.Global;
 import com.lf.web.WebCommonTask;
 
 /**
@@ -81,6 +84,11 @@ public class commentDialog extends BaseDialog implements ConnectListener {
 		TextView tvMessage = (TextView) view.findViewById(R.id.tv_name);
 		// 设置评论人姓名（截取小部分）+评论
 		tvMessage.setText(cEntity.getName() + ":" + cEntity.getMessage());
+		RoundImage photoC = (RoundImage) view.findViewById(R.id.photo);
+		AsyncImageLoader loader = AsyncImageLoader
+				.getAsyncImageLoader(getContext());
+		loader.loadDrawable(
+				Global.Photo_URL + MyApplication.userEntity.getPhoto(), photoC);
 		dismiss();
 	}
 

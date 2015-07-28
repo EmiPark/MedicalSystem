@@ -101,8 +101,7 @@ public class AsyncImageLoader {
 		}
 		ImgEntity imgEntity = new ImgEntity();
 		imgEntity.setUrl(url);
-		imgEntity.setName("bysj");
-		imgEntity.setSaveState(5);
+		imgEntity.setSaveState(2);
 		Bitmap bitmap = getLocalDrawable(imgEntity);
 		if (bitmap != null) {
 			imageView.setImageBitmap(bitmap);
@@ -129,8 +128,7 @@ public class AsyncImageLoader {
 		}
 		ImgEntity imgEntity = new ImgEntity();
 		imgEntity.setUrl(url);
-		imgEntity.setName("bysj");
-		imgEntity.setSaveState(5);
+		imgEntity.setSaveState(2);
 		Bitmap bitmap = getLocalDrawable(imgEntity);
 		bitmapTemp = bitmap;
 		if (bitmap != null) {
