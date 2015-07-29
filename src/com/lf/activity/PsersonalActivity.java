@@ -3,6 +3,7 @@ package com.lf.activity;
 import com.alibaba.fastjson.JSONObject;
 import com.bysj.zzx.R;
 import com.lf.common.AsyncImageLoader;
+import com.lf.common.AsyncImageLoader.LoadSrcListener;
 import com.lf.common.MyApplication;
 import com.lf.common.RoundImage;
 import com.lf.dialog.TimeDialog;
@@ -15,6 +16,7 @@ import com.lf.web.Global;
 import com.lf.web.Global.Connect;
 import com.lf.web.Global.ConnectListener;
 import com.lf.web.WebCommonTask;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -22,7 +24,6 @@ import android.graphics.BitmapFactory;
 import android.hardware.Camera.CameraInfo;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,7 +36,7 @@ import android.widget.TextView;
  * @author wzg
  * 
  */
-public class PsersonalActivity extends BaseActivity implements ConnectListener {
+public class PsersonalActivity extends BaseActivity implements ConnectListener, LoadSrcListener {
 	// 姓名；年龄；身高；电话；地址；血型
 	private EditText etvName, etvAge, etvHigh, etvTel, etvAds, etvXx, etvUerName, etvPsd;
 	private String name, age, high, tel, ads, xx, sex, userName, psd;
@@ -52,6 +53,7 @@ public class PsersonalActivity extends BaseActivity implements ConnectListener {
 	// 调用相机
 	private final int CAMERA = 1;
 	private Connect connect;
+	// 图片网络处理类
 	private AsyncImageLoader loader;
 	// 跟新用户信息
 	private UpdatePersonEntity uPersonEntity;
@@ -66,6 +68,7 @@ public class PsersonalActivity extends BaseActivity implements ConnectListener {
 	protected void initResource() {
 		pEntity = new PersonEntity();
 		loader = AsyncImageLoader.getAsyncImageLoader(this);
+		loader.setLoadListener(this);
 		resign = getIntent().getExtras().getBoolean("type");
 		if (resign) {
 			connect = Connect.REGISTER;
@@ -103,7 +106,7 @@ public class PsersonalActivity extends BaseActivity implements ConnectListener {
 		} else {
 			btn.setText("修改");
 			String url = Global.Photo_URL + entity.getPhoto();
-			loader.loadDrawable(url, imgPhoto, bitmap);
+			loader.loadDrawable(url, imgPhoto);
 			etvUerName.setText(entity.getName());
 			etvPsd.setText(entity.getPassword());
 			etvName.setText(entity.getNameS());
@@ -198,7 +201,6 @@ public class PsersonalActivity extends BaseActivity implements ConnectListener {
 	public void Succes(Connect connect, Object object) {
 		switch (connect) {
 		case SEND_PHOTO:
-			Log.e("tag", "--->" + object.toString());
 			pEntity.setPhoto(object.toString());
 			if (this.connect == Connect.REGISTER) {
 				new WebCommonTask(this, this, "上传中。。。。。").execute(this.connect, pEntity);
@@ -231,6 +233,11 @@ public class PsersonalActivity extends BaseActivity implements ConnectListener {
 	@Override
 	public void Failed(String message) {
 		showMsg(message);
+	}
+
+	@Override
+	public void sucLoad(Bitmap bitmap) {
+		this.bitmap = bitmap;
 	}
 
 }

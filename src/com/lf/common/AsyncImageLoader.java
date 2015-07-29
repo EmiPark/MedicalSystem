@@ -41,6 +41,8 @@ public class AsyncImageLoader {
 	private LruCache<String, Bitmap> mMemoryCache;
 	// 當前操作類
 	private static AsyncImageLoader loader;
+	// 成功回调
+	private LoadSrcListener listener;
 
 	/**
 	 * 单例模式
@@ -62,6 +64,10 @@ public class AsyncImageLoader {
 		this.context = context;
 		fileUtils = new FileUtils(context);
 		initLruCache();
+	}
+
+	public void setLoadListener(LoadSrcListener listener) {
+		this.listener = listener;
 	}
 
 	/**
@@ -105,33 +111,9 @@ public class AsyncImageLoader {
 		Bitmap bitmap = getLocalDrawable(imgEntity);
 		if (bitmap != null) {
 			imageView.setImageBitmap(bitmap);
-		} else {
-			// 添加等待图片
-			// imageView.setImageBitmap(new BitmapFactory().decodeResource(
-			// context.getResources(), R.drawable.bg_welcom));
-			setImageDownlaod(imageView, imgEntity);
-			Log.e("tag", "网络获取图片");
-		}
-	}
-
-	/**
-	 * 给imgview添加图片並且給bitmap賦值
-	 * 
-	 * @param imgEntity
-	 * @param imageView
-	 * @param bitmapTemp
-	 */
-	public void loadDrawable(String url, final ImageView imageView, Bitmap bitmapTemp) {
-		if (url == null || "".equals(url)) {
-			return;
-		}
-		ImgEntity imgEntity = new ImgEntity();
-		imgEntity.setUrl(url);
-		imgEntity.setSaveState(2);
-		Bitmap bitmap = getLocalDrawable(imgEntity);
-		bitmapTemp = bitmap;
-		if (bitmap != null) {
-			imageView.setImageBitmap(bitmap);
+			if (listener != null) {
+				listener.sucLoad(bitmap);
+			}
 		} else {
 			// 添加等待图片
 			// imageView.setImageBitmap(new BitmapFactory().decodeResource(
@@ -197,9 +179,15 @@ public class AsyncImageLoader {
 			@Override
 			public void handleMessage(Message msg) {
 				imageView.setImageBitmap((Bitmap) msg.obj);
+				if (listener != null) {
+					listener.sucLoad((Bitmap) msg.obj);
+				}
 			}
 		};
 
+		/**
+		 * 线程池中得到一个线程下载任务
+		 */
 		getThreadPool().execute(new Runnable() {
 			@Override
 			public void run() {
@@ -239,8 +227,8 @@ public class AsyncImageLoader {
 			return bitmap;
 		} catch (Exception e) {
 			Log.e("tag", "((((((((((((((((((((下载失败" + e.toString());
-			return BitmapFactory.decodeResource(context.getResources(), R.drawable.btn_l_r_boy);
 		}
+		return BitmapFactory.decodeResource(context.getResources(), R.drawable.btn_l_r_boy);
 	}
 
 	/**
@@ -284,6 +272,21 @@ public class AsyncImageLoader {
 	// intent.setType("video/*");
 	// intent.setDataAndType(uri , "video/*");
 	// startActivity(intent);
+
+	/**
+	 * 图像后去监听
+	 * 
+	 * @author wzg
+	 *
+	 */
+	public interface LoadSrcListener {
+		/**
+		 * 成功获取图像
+		 * 
+		 * @param bitmap
+		 */
+		void sucLoad(Bitmap bitmap);
+	}
 
 	/**
 	 * 下载数据实体类
