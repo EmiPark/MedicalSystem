@@ -18,6 +18,7 @@ import android.util.Log;
 import android.util.LruCache;
 import android.widget.ImageView;
 
+import com.bysj.zzx.R;
 import com.lf.web.Global;
 
 /**
@@ -80,8 +81,7 @@ public class AsyncImageLoader {
 
 			// 硬引用缓存区满，将一个最不经常使用的oldvalue推入到软引用缓存区
 			@Override
-			protected void entryRemoved(boolean evicted, String key,
-					Bitmap oldValue, Bitmap newValue) {
+			protected void entryRemoved(boolean evicted, String key, Bitmap oldValue, Bitmap newValue) {
 				Log.v("tag", "硬缓冲区满，放入到软缓存中");
 				imageCache.put(key, new SoftReference<Bitmap>(oldValue));
 			}
@@ -119,10 +119,9 @@ public class AsyncImageLoader {
 	 * 
 	 * @param imgEntity
 	 * @param imageView
-	 * @param bitmapTemp 
+	 * @param bitmapTemp
 	 */
-	public void loadDrawable(String url, final ImageView imageView,
-			Bitmap bitmapTemp) {
+	public void loadDrawable(String url, final ImageView imageView, Bitmap bitmapTemp) {
 		if (url == null || "".equals(url)) {
 			return;
 		}
@@ -167,8 +166,7 @@ public class AsyncImageLoader {
 		}
 
 		if (imageCache.containsKey(imgEntity.getUrl())) {
-			SoftReference<Bitmap> softReference = imageCache.get(imgEntity
-					.getUrl());
+			SoftReference<Bitmap> softReference = imageCache.get(imgEntity.getUrl());
 			if (softReference.get() != null) {
 				Log.e("tag", "软缓存获取图片");
 				bitmap = softReference.get();
@@ -191,8 +189,7 @@ public class AsyncImageLoader {
 	 * @param imageView
 	 * @param imgEntity
 	 */
-	private void setImageDownlaod(final ImageView imageView,
-			final ImgEntity imgEntity) {
+	private void setImageDownlaod(final ImageView imageView, final ImgEntity imgEntity) {
 		/**
 		 * 下载完成以后处理
 		 */
@@ -237,14 +234,13 @@ public class AsyncImageLoader {
 	 */
 	protected Bitmap loadImageFromUrl(ImgEntity imgEntity) {
 		try {
-			Bitmap bitmap = BitmapFactory.decodeStream(new URL(imgEntity
-					.getUrl()).openStream());
+			Bitmap bitmap = BitmapFactory.decodeStream(new URL(imgEntity.getUrl()).openStream());
 			save(bitmap, imgEntity);
 			return bitmap;
 		} catch (Exception e) {
 			Log.e("tag", "((((((((((((((((((((下载失败" + e.toString());
+			return BitmapFactory.decodeResource(context.getResources(), R.drawable.btn_l_r_boy);
 		}
-		return null;
 	}
 
 	/**
@@ -259,12 +255,10 @@ public class AsyncImageLoader {
 		}
 		// 得到的图片放入到软缓存队列里面
 		if (imgEntity.getSaveState() == 2 || imgEntity.getSaveState() == 5) {
-			imageCache.put(imgEntity.getUrl(),
-					new SoftReference<Bitmap>(bitmap));
+			imageCache.put(imgEntity.getUrl(), new SoftReference<Bitmap>(bitmap));
 		}
 		// 得到的图片放入本地
-		if (imgEntity.getSaveState() == 3 || imgEntity.getSaveState() == 4
-				|| imgEntity.getSaveState() == 5) {
+		if (imgEntity.getSaveState() == 3 || imgEntity.getSaveState() == 4 || imgEntity.getSaveState() == 5) {
 			try {
 				fileUtils.savaBitmap(imgEntity.getName(), bitmap);
 			} catch (IOException e) {

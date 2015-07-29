@@ -56,7 +56,6 @@ public class ControllActivity extends BaseFramentActivity implements DragListene
 		setFragment(R.id.rlyout_content, cFragment);
 		tvName = ((TextView) findViewById(R.id.tv_name));
 		image = (RoundImage) findViewById(R.id.photo);
-		image.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.btn_l_r_boy));
 	}
 
 	@Override

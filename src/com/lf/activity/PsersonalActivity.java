@@ -94,10 +94,10 @@ public class PsersonalActivity extends BaseActivity implements ConnectListener {
 		rbtG = (RadioButton) findViewById(R.id.rbtn_g);
 		Button btn = (Button) findViewById(R.id.btn_ok);
 		TextView tvTitle = (TextView) findViewById(R.id.tv_title);
-		bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.btn_l_r_boy);
-		imgPhoto.setImageBitmap(bitmap);
 
 		if (resign) {
+			bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.btn_l_r_boy);
+			imgPhoto.setImageBitmap(bitmap);
 			btn.setText("注册");
 			tvTitle.setText("注册");
 		} else {
