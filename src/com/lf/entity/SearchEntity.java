@@ -1,7 +1,7 @@
 package com.lf.entity;
 
 /**
- * 用户数据保存类
+ * 疾病保存类
  * 
  * @author
  * 
