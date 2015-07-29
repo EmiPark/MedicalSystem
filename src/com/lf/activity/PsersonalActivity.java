@@ -1,22 +1,5 @@
 package com.lf.activity;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.hardware.Camera.CameraInfo;
-import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.TextView;
-
 import com.alibaba.fastjson.JSONObject;
 import com.bysj.zzx.R;
 import com.lf.common.AsyncImageLoader;
@@ -32,6 +15,19 @@ import com.lf.web.Global;
 import com.lf.web.Global.Connect;
 import com.lf.web.Global.ConnectListener;
 import com.lf.web.WebCommonTask;
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.hardware.Camera.CameraInfo;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.TextView;
 
 /**
  * 记录个人信息界面
@@ -41,8 +37,7 @@ import com.lf.web.WebCommonTask;
  */
 public class PsersonalActivity extends BaseActivity implements ConnectListener {
 	// 姓名；年龄；身高；电话；地址；血型
-	private EditText etvName, etvAge, etvHigh, etvTel, etvAds, etvXx,
-			etvUerName, etvPsd;
+	private EditText etvName, etvAge, etvHigh, etvTel, etvAds, etvXx, etvUerName, etvPsd;
 	private String name, age, high, tel, ads, xx, sex, userName, psd;
 	private RoundImage imgPhoto;
 	private Bitmap bitmap;
@@ -99,11 +94,10 @@ public class PsersonalActivity extends BaseActivity implements ConnectListener {
 		rbtG = (RadioButton) findViewById(R.id.rbtn_g);
 		Button btn = (Button) findViewById(R.id.btn_ok);
 		TextView tvTitle = (TextView) findViewById(R.id.tv_title);
+		bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.btn_l_r_boy);
+		imgPhoto.setImageBitmap(bitmap);
 
 		if (resign) {
-			bitmap = BitmapFactory.decodeResource(getResources(),
-					R.drawable.btn_l_r_boy);
-			imgPhoto.setImageBitmap(bitmap);
 			btn.setText("注册");
 			tvTitle.setText("注册");
 		} else {
@@ -156,10 +150,8 @@ public class PsersonalActivity extends BaseActivity implements ConnectListener {
 	/**
 	 * 选择图片结束后，回调方法
 	 */
-	protected void onActivityResult(int requestCode, int resultCode,
-			android.content.Intent data) {
-		if (requestCode == CAMERA && resultCode == Activity.RESULT_OK
-				&& null != data) {
+	protected void onActivityResult(int requestCode, int resultCode, android.content.Intent data) {
+		if (requestCode == CAMERA && resultCode == Activity.RESULT_OK && null != data) {
 			// 获取相机返回的数据，并转换为图片格式
 			bitmap = data.getParcelableExtra("data");
 			imgPhoto.setImageBitmap(bitmap);
@@ -179,8 +171,7 @@ public class PsersonalActivity extends BaseActivity implements ConnectListener {
 		sex = rbtB.isChecked() ? "1" : "2";
 		userName = etvUerName.getText().toString().trim();
 		psd = etvPsd.getText().toString().trim();
-		if ("".equals(name) || "".equals(age) || "".equals(high)
-				|| "".equals(tel) || "".equals(ads) || "".equals(xx)
+		if ("".equals(name) || "".equals(age) || "".equals(high) || "".equals(tel) || "".equals(ads) || "".equals(xx)
 				|| "".equals(userName) || "".equals(psd)) {
 			showMsg(R.string.simple);
 			return;
@@ -196,13 +187,10 @@ public class PsersonalActivity extends BaseActivity implements ConnectListener {
 		pEntity.setPsd(psd);
 		if (bitmap == null) {
 			uPersonEntity = new UpdatePersonEntity(pEntity);
-			new WebCommonTask(this, this, "上传中。。。。。").execute(this.connect,
-					uPersonEntity);
+			new WebCommonTask(this, this, "上传中。。。。。").execute(this.connect, uPersonEntity);
 		} else {
-			SendPhotoEntity sEntity = new SendPhotoEntity(new PhotoEntity(
-					bitmap));
-			new WebCommonTask(this, this, "上传中。。。。。").execute(
-					Connect.SEND_PHOTO, sEntity);
+			SendPhotoEntity sEntity = new SendPhotoEntity(new PhotoEntity(bitmap));
+			new WebCommonTask(this, this, "上传中。。。。。").execute(Connect.SEND_PHOTO, sEntity);
 		}
 	}
 
@@ -213,12 +201,10 @@ public class PsersonalActivity extends BaseActivity implements ConnectListener {
 			Log.e("tag", "--->" + object.toString());
 			pEntity.setPhoto(object.toString());
 			if (this.connect == Connect.REGISTER) {
-				new WebCommonTask(this, this, "上传中。。。。。").execute(this.connect,
-						pEntity);
+				new WebCommonTask(this, this, "上传中。。。。。").execute(this.connect, pEntity);
 			} else {
 				uPersonEntity = new UpdatePersonEntity(pEntity);
-				new WebCommonTask(this, this, "上传中。。。。。").execute(this.connect,
-						uPersonEntity);
+				new WebCommonTask(this, this, "上传中。。。。。").execute(this.connect, uPersonEntity);
 			}
 			break;
 		case UPDATE_PERSON:
@@ -226,16 +212,14 @@ public class PsersonalActivity extends BaseActivity implements ConnectListener {
 			userEntity.setMothed("login");
 			userEntity.setName(userName);
 			userEntity.setPassword(psd);
-			new WebCommonTask(this, this, null).execute(Connect.LOGIN,
-					userEntity);
+			new WebCommonTask(this, this, null).execute(Connect.LOGIN, userEntity);
 			break;
 		case REGISTER:
 			showMsg("注册成功");
 			finish();
 			break;
 		case LOGIN:
-			MyApplication.userEntity = JSONObject.parseObject(
-					object.toString(), UserEntity.class);
+			MyApplication.userEntity = JSONObject.parseObject(object.toString(), UserEntity.class);
 			showMsg("修改成功");
 			finish();
 			break;

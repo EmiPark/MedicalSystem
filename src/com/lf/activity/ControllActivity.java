@@ -1,5 +1,6 @@
 package com.lf.activity;
 
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -23,15 +24,14 @@ import com.lf.web.Global;
  * @author wzg
  * 
  */
-public class ControllActivity extends BaseFramentActivity implements
-		DragListener {
+public class ControllActivity extends BaseFramentActivity implements DragListener {
 	// 内容；知识；资讯
 	private BaseFragment cFragment, sFragment, mFragment, fFragment;
 	// 可拖动侧边栏控件
 	private DragLayout dl;
-//	用户名
+	// 用户名
 	private TextView tvName;
-//	头像
+	// 头像
 	private RoundImage image;
 
 	@Override
@@ -56,6 +56,7 @@ public class ControllActivity extends BaseFramentActivity implements
 		setFragment(R.id.rlyout_content, cFragment);
 		tvName = ((TextView) findViewById(R.id.tv_name));
 		image = (RoundImage) findViewById(R.id.photo);
+		image.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.btn_l_r_boy));
 	}
 
 	@Override
@@ -63,8 +64,7 @@ public class ControllActivity extends BaseFramentActivity implements
 		super.onResume();
 		tvName.setText(MyApplication.userEntity.getName());
 		AsyncImageLoader loader = AsyncImageLoader.getAsyncImageLoader(this);
-		loader.loadDrawable(
-				Global.Photo_URL + MyApplication.userEntity.getPhoto(), image);
+		loader.loadDrawable(Global.Photo_URL + MyApplication.userEntity.getPhoto(), image);
 	}
 
 	@Override
