@@ -159,7 +159,7 @@ public class SortListViewDialog2 extends Dialog implements ConnectListener,
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		new SerachDialog2(context, listData.get(position)).show();
+		new SerachDialog2(context, list.get(position)).show();
 	}
 
 	@Override
