@@ -27,19 +27,43 @@
     <LinearLayout
         android:id="@+id/llyout_content"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="262dp"
         android:layout_below="@id/rlyout_title"
         android:layout_marginTop="35dp"
-        android:background="@color/white"
+        android:background="@color/gray"
         android:orientation="vertical"
-        android:paddingLeft="11dp"
-        android:paddingRight="11dp" >
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:layout_margin="3dp" >
+        <LinearLayout 
+            android:layout_height="150dp"
+            android:layout_width="fill_parent"
+            android:background="@color/white"
+            android:layout_marginBottom="5dp"
+            >
+            <ImageView 
+                android:paddingTop="25dp"
+            	android:layout_height="110dp"
+            	android:layout_width="wrap_content"
+            	android:src="@drawable/bg_login"
+            	android:layout_gravity="center_horizontal"
+        	/>
+        </LinearLayout>
+        
+        
 
+        <LinearLayout 
+            android:layout_height="120dp"
+            android:layout_width="fill_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="15dp"
             android:layout_weight="1"
             android:background="@drawable/bg_tv_down_line"
+            android:paddingLeft="5dp"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
@@ -69,6 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:paddingLeft="5dp"
             android:background="@drawable/bg_tv_down_line"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
@@ -94,6 +119,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/tv_size_more_small" />
         </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
     <TextView
@@ -105,8 +131,19 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
         android:text="注册>"
-        android:textColor="@color/white"
+        android:textColor="#555555"
         android:textSize="20sp" />
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/llyout_content"
+        android:layout_toLeftOf="@id/tv_register"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="23dp"
+        android:text="还没有账号？"
+        android:textColor="#666666"
+        android:textSize="16sp"
+        />
 
     <Button
         android:id="@+id/btn_longin"

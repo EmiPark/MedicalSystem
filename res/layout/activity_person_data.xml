@@ -78,11 +78,13 @@
                     android:id="@+id/etv_user_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="5dp"
                     android:background="@color/white"
                     android:gravity="center_vertical"
                     android:padding="5dp"
                     android:singleLine="true"
+                    android:hint="输入您要注册的用户名"
+                    android:textSize="14sp"
                     android:textColor="@color/black" />
             </LinearLayout>
 
@@ -109,6 +111,8 @@
                     android:background="@color/white"
                     android:gravity="center_vertical"
                     android:padding="5dp"
+                    android:hint="输入您想设置的密码"
+                    android:textSize="14sp"
                     android:singleLine="true"
                     android:textColor="@color/black" />
             </LinearLayout>
@@ -136,6 +140,8 @@
                     android:background="@color/white"
                     android:gravity="center_vertical"
                     android:padding="5dp"
+                    android:hint="请再次输入密码"
+                    android:textSize="14sp"
                     android:singleLine="true"
                     android:textColor="@color/black" />
             </LinearLayout>
@@ -164,6 +170,8 @@
                     android:gravity="center_vertical"
                     android:inputType="number"
                     android:padding="5dp"
+                    android:hint="输入您的年龄"
+                    android:textSize="14sp"
                     android:singleLine="true"
                     android:textColor="@color/black" />
             </LinearLayout>
@@ -192,6 +200,8 @@
                     android:gravity="center_vertical"
                     android:inputType="number"
                     android:padding="5dp"
+                    android:hint="输入您的身高"
+                    android:textSize="14sp"
                     android:singleLine="true"
                     android:textColor="@color/black" />
             </LinearLayout>
@@ -219,6 +229,8 @@
                     android:background="@color/white"
                     android:gravity="center_vertical"
                     android:padding="5dp"
+                    android:hint="输入您的血型"
+                    android:textSize="14sp"
                     android:singleLine="true"
                     android:textColor="@color/black" />
             </LinearLayout>
@@ -247,6 +259,8 @@
                     android:gravity="center_vertical"
                     android:inputType="number"
                     android:padding="5dp"
+                    android:hint="输入您的电话"
+                    android:textSize="14sp"
                     android:singleLine="true"
                     android:textColor="@color/black" />
             </LinearLayout>
@@ -274,6 +288,8 @@
                     android:background="@color/white"
                     android:gravity="center_vertical"
                     android:padding="5dp"
+                    android:hint="输入您的邮箱"
+                    android:textSize="14sp"
                     android:singleLine="true"
                     android:textColor="@color/black" />
             </LinearLayout>

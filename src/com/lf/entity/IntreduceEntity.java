@@ -1,16 +1,15 @@
 package com.lf.entity;
 
-
 /**
- * 推薦圖片
+ * 推荐图片
  * 
  * @author wzg
  * 
  */
 public class IntreduceEntity extends BaseConnectEntity {
-	
+
 	private int id;
-//圖片地址
+	// 圖片地址
 	private String url;
 
 	public int getId() {

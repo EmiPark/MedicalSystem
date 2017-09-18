@@ -1,10 +1,5 @@
 package com.lf.activity;
 
-import android.graphics.BitmapFactory;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
-
 import com.bysj.zzx.R;
 import com.lf.common.AsyncImageLoader;
 import com.lf.common.MyApplication;
@@ -17,6 +12,10 @@ import com.lf.fragment.MsgFragment;
 import com.lf.view.DragLayout;
 import com.lf.view.DragLayout.DragListener;
 import com.lf.web.Global;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 /**
  * 主界面内容显示

@@ -43,8 +43,21 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/rlyout_title"
         android:orientation="vertical" >
-
-        <TextView
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="所属科："
+                android:padding="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:textColor="@color/black"
+                />
+            <TextView
             android:id="@+id/tv_sub"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,48 +66,94 @@
             android:gravity="center_vertical"
             android:inputType="textWebEmailAddress"
             android:padding="5dp"
-            android:singleLine="true"
             android:text="皮肤病"
             android:textColor="@color/black" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_msg"
+        
+
+        <LinearLayout 
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/white"
-            android:gravity="center_vertical"
-            android:inputType="textWebEmailAddress"
-            android:padding="5dp"
-            android:singleLine="true"
-            android:text="这是一种病，简单介绍"
-            android:textColor="@color/black" />
-
-        <TextView
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="简介："
+                android:padding="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:textColor="@color/black"
+                />
+	        <TextView
+	            android:id="@+id/tv_msg"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:background="@color/white"
+	            android:gravity="center_vertical"
+	            android:padding="5dp"
+	            android:text="这是一种病，简单介绍这是一种病，简单介绍这是一种病，简单介绍这是一种病，简单介绍"
+	            android:textColor="@color/black" />
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="治疗方法："
+                android:padding="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:textColor="@color/black"
+                />
+	        <TextView
             android:id="@+id/tv_zl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:background="@color/white"
             android:gravity="center_vertical"
-            android:inputType="textWebEmailAddress"
             android:padding="5dp"
-            android:singleLine="true"
             android:text="治疗方法"
             android:textColor="@color/black" />
+        </LinearLayout>
+        
 
-        <TextView
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rlyout_title"
+        android:orientation="vertical" >
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="检查项目："
+                android:padding="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:textColor="@color/black"
+                />
+            <TextView
             android:id="@+id/tv_jc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:background="@color/white"
             android:gravity="center_vertical"
-            android:inputType="textWebEmailAddress"
             android:padding="5dp"
-            android:singleLine="true"
             android:text="检查"
             android:textColor="@color/black" />
+        </LinearLayout>
+        
+    </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>

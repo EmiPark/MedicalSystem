@@ -1,7 +1,5 @@
 package com.lf.activity;
 
-import org.w3c.dom.Text;
-
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -26,7 +24,7 @@ import com.lf.web.WebCommonTask;
 public class MainActivity extends BaseActivity implements ConnectListener {
 	// * 点击放回键间隔的时间
 	private long lgTime;
-	// 用户数据尸体类
+	// 用户数据实体类
 	private UserEntity userEntity;
 	// 用户和密码
 	private EditText etvName, etvPsd;
@@ -47,7 +45,7 @@ public class MainActivity extends BaseActivity implements ConnectListener {
 	protected void initWidget() {
 		etvName = (EditText) findViewById(R.id.etv_name);
 		etvPsd = (EditText) findViewById(R.id.etv_password);
-		((TextView)findViewById(R.id.tv_register)).setOnClickListener(this);
+		((TextView) findViewById(R.id.tv_register)).setOnClickListener(this);
 	}
 
 	// @Override登陆和注册监听

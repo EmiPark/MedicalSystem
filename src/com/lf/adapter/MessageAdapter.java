@@ -45,7 +45,7 @@ public class MessageAdapter extends BaseAdapter implements ConnectListener {
 	public MessageAdapter(Context context) {
 		ltData = new ArrayList<MessageEntity>();
 		this.context = context;
-		loader=AsyncImageLoader.getAsyncImageLoader(context);
+		loader = AsyncImageLoader.getAsyncImageLoader(context);
 	}
 
 	/**
@@ -124,7 +124,8 @@ public class MessageAdapter extends BaseAdapter implements ConnectListener {
 		entity.setLlyout(holder.ltView);
 		holder.tvName.setText(entity.getName() + "  时间：" + entity.getTime());
 		holder.tvMessage.setText("说说：" + entity.getMessage());
-		loader.loadDrawable(Global.Photo_URL+entity.getPhoto(), holder.imagePhoto);
+		loader.loadDrawable(Global.Photo_URL + entity.getPhoto(),
+				holder.imagePhoto);
 		List<CommentEntity> mEntities = entity.getLtComment();
 		holder.ltView.removeAllViews();
 		for (CommentEntity entityC : mEntities) {
@@ -135,8 +136,8 @@ public class MessageAdapter extends BaseAdapter implements ConnectListener {
 			TextView tvMessage = (TextView) view.findViewById(R.id.tv_name);
 			// 设置评论人姓名（截取小部分）+评论
 			tvMessage.setText(entityC.getName() + ":" + entityC.getMessage());
-			RoundImage photoC=(RoundImage)view.findViewById(R.id.photo);
-			loader.loadDrawable(Global.Photo_URL+entityC.getPhoto(),  photoC);
+			RoundImage photoC = (RoundImage) view.findViewById(R.id.photo);
+			loader.loadDrawable(Global.Photo_URL + entityC.getPhoto(), photoC);
 		}
 	}
 

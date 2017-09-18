@@ -1,5 +1,13 @@
 package com.lf.fragment;
 
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+
 import com.alibaba.fastjson.JSONObject;
 import com.bysj.zzx.R;
 import com.lf.activity.SortListViewDialog;
@@ -11,14 +19,6 @@ import com.lf.entity.SearchEntity;
 import com.lf.web.Global.Connect;
 import com.lf.web.Global.ConnectListener;
 import com.lf.web.WebCommonTask;
-
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
 
 /**
  * 知识界面
@@ -58,7 +58,8 @@ public class KnownageFragment extends BaseFragment implements ConnectListener {
 	protected void initWidget(View view) {
 		etvSearch = (EditText) view.findViewById(R.id.etv_search);
 		((Button) view.findViewById(R.id.btn_search)).setOnClickListener(this);
-		((Button) view.findViewById(R.id.btn_search_m)).setOnClickListener(this);
+		((Button) view.findViewById(R.id.btn_search_m))
+				.setOnClickListener(this);
 		ListView lView = (ListView) view.findViewById(R.id.lt);
 		lView.setAdapter(adatapter);
 	}
@@ -78,7 +79,7 @@ public class KnownageFragment extends BaseFragment implements ConnectListener {
 	}
 
 	/**
-	 * 收索处理
+	 * 搜索处理
 	 */
 	private void searchDo() {
 		String search = etvSearch.getText().toString();
